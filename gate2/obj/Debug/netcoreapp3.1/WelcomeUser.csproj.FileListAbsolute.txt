@@ -1,0 +1,88 @@
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\deploymentTemplates\new-rg-parameters.json
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\deploymentTemplates\preexisting-rg-parameters.json
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\deploymentTemplates\template-with-new-rg.json
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\deploymentTemplates\template-with-preexisting-rg.json
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\WelcomeUser.exe
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\WelcomeUser.deps.json
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\WelcomeUser.runtimeconfig.json
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\WelcomeUser.runtimeconfig.dev.json
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\WelcomeUser.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\WelcomeUser.pdb
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Microsoft.Bot.Builder.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Microsoft.Bot.Builder.Integration.AspNet.Core.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Microsoft.Bot.Configuration.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Microsoft.Bot.Connector.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Microsoft.Bot.Schema.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Microsoft.Bot.Streaming.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Microsoft.Rest.ClientRuntime.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\mali\source\repos\03.welcome-user\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\mali\source\repos\03.welcome-user\obj\Debug\netcoreapp3.1\WelcomeUser.csprojAssemblyReference.cache
+C:\Users\mali\source\repos\03.welcome-user\obj\Debug\netcoreapp3.1\WelcomeUser.AssemblyInfoInputs.cache
+C:\Users\mali\source\repos\03.welcome-user\obj\Debug\netcoreapp3.1\WelcomeUser.AssemblyInfo.cs
+C:\Users\mali\source\repos\03.welcome-user\obj\Debug\netcoreapp3.1\WelcomeUser.csproj.CoreCompileInputs.cache
+C:\Users\mali\source\repos\03.welcome-user\obj\Debug\netcoreapp3.1\WelcomeUser.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\mali\source\repos\03.welcome-user\obj\Debug\netcoreapp3.1\WelcomeUser.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\mali\source\repos\03.welcome-user\obj\Debug\netcoreapp3.1\WelcomeUser.RazorTargetAssemblyInfo.cache
+C:\Users\mali\source\repos\03.welcome-user\obj\Debug\netcoreapp3.1\WelcomeUser.csproj.CopyComplete
+C:\Users\mali\source\repos\03.welcome-user\obj\Debug\netcoreapp3.1\staticwebassets\WelcomeUser.StaticWebAssets.Manifest.cache
+C:\Users\mali\source\repos\03.welcome-user\obj\Debug\netcoreapp3.1\staticwebassets\WelcomeUser.StaticWebAssets.xml
+C:\Users\mali\source\repos\03.welcome-user\obj\Debug\netcoreapp3.1\WelcomeUser.dll
+C:\Users\mali\source\repos\03.welcome-user\obj\Debug\netcoreapp3.1\WelcomeUser.pdb
+C:\Users\mali\source\repos\03.welcome-user\obj\Debug\netcoreapp3.1\WelcomeUser.genruntimeconfig.cache
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\deploymentTemplates\new-rg-parameters.json
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\deploymentTemplates\preexisting-rg-parameters.json
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\deploymentTemplates\template-with-new-rg.json
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\deploymentTemplates\template-with-preexisting-rg.json
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\WelcomeUser.exe
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\WelcomeUser.deps.json
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\WelcomeUser.runtimeconfig.json
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\WelcomeUser.runtimeconfig.dev.json
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\WelcomeUser.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\WelcomeUser.pdb
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Microsoft.Bot.Builder.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Microsoft.Bot.Builder.Integration.AspNet.Core.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Microsoft.Bot.Configuration.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Microsoft.Bot.Connector.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Microsoft.Bot.Schema.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Microsoft.Bot.Streaming.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Microsoft.Rest.ClientRuntime.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\obj\Debug\netcoreapp3.1\WelcomeUser.csprojAssemblyReference.cache
+C:\Users\mali\source\repos\03.welcome-user - 복사본\obj\Debug\netcoreapp3.1\WelcomeUser.AssemblyInfoInputs.cache
+C:\Users\mali\source\repos\03.welcome-user - 복사본\obj\Debug\netcoreapp3.1\WelcomeUser.AssemblyInfo.cs
+C:\Users\mali\source\repos\03.welcome-user - 복사본\obj\Debug\netcoreapp3.1\WelcomeUser.csproj.CoreCompileInputs.cache
+C:\Users\mali\source\repos\03.welcome-user - 복사본\obj\Debug\netcoreapp3.1\WelcomeUser.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\mali\source\repos\03.welcome-user - 복사본\obj\Debug\netcoreapp3.1\WelcomeUser.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\mali\source\repos\03.welcome-user - 복사본\obj\Debug\netcoreapp3.1\WelcomeUser.RazorTargetAssemblyInfo.cache
+C:\Users\mali\source\repos\03.welcome-user - 복사본\obj\Debug\netcoreapp3.1\WelcomeUser.csproj.CopyComplete
+C:\Users\mali\source\repos\03.welcome-user - 복사본\obj\Debug\netcoreapp3.1\staticwebassets\WelcomeUser.StaticWebAssets.Manifest.cache
+C:\Users\mali\source\repos\03.welcome-user - 복사본\obj\Debug\netcoreapp3.1\staticwebassets\WelcomeUser.StaticWebAssets.xml
+C:\Users\mali\source\repos\03.welcome-user - 복사본\obj\Debug\netcoreapp3.1\WelcomeUser.dll
+C:\Users\mali\source\repos\03.welcome-user - 복사본\obj\Debug\netcoreapp3.1\WelcomeUser.pdb
+C:\Users\mali\source\repos\03.welcome-user - 복사본\obj\Debug\netcoreapp3.1\WelcomeUser.genruntimeconfig.cache
