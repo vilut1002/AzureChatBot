@@ -20,7 +20,7 @@ namespace Microsoft.BotBuilderSamples
     public class WelcomeUserBot : ActivityHandler
     {
         // Messages sent to the user.
-        private const string WelcomeMessage = "안녕하세요! pre-SNACKS입니다. '목적 알려주세요'를 입력하시면 저희 챗봇을 소개해 드릴게요.";
+        private const string WelcomeMessage = "안녕하세요~ pre-SNACKS입니다!";
 
 
         private BotState _userState;
@@ -61,7 +61,7 @@ namespace Microsoft.BotBuilderSamples
                     await turnContext.SendActivityAsync($"우리는 단계별 레시피와 응원을 통해 초보 유저도 쉽고 즐겁게 요리할 수 있도록 돕는 챗봇을 만들고 있습니다.");
                     break;
                 default:
-                    await turnContext.SendActivityAsync(WelcomeMessage, cancellationToken: cancellationToken);
+                    await turnContext.SendActivityAsync($"'목적 알려주세요'를 입력해보세요.", cancellationToken: cancellationToken);
                     break;
             }
             

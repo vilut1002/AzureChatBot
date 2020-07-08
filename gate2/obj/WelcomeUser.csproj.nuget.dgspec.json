@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mali\\source\\repos\\03.welcome-user - 복사본\\WelcomeUser.csproj": {}
+    "C:\\Users\\DahaeLee\\Documents\\GitHub\\AzureChatBot\\gate2\\WelcomeUser.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mali\\source\\repos\\03.welcome-user - 복사본\\WelcomeUser.csproj": {
+    "C:\\Users\\DahaeLee\\Documents\\GitHub\\AzureChatBot\\gate2\\WelcomeUser.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mali\\source\\repos\\03.welcome-user - 복사본\\WelcomeUser.csproj",
+        "projectUniqueName": "C:\\Users\\DahaeLee\\Documents\\GitHub\\AzureChatBot\\gate2\\WelcomeUser.csproj",
         "projectName": "WelcomeUser",
-        "projectPath": "C:\\Users\\mali\\source\\repos\\03.welcome-user - 복사본\\WelcomeUser.csproj",
-        "packagesPath": "C:\\Users\\mali\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mali\\source\\repos\\03.welcome-user - 복사본\\obj\\",
+        "projectPath": "C:\\Users\\DahaeLee\\Documents\\GitHub\\AzureChatBot\\gate2\\WelcomeUser.csproj",
+        "packagesPath": "C:\\Users\\DahaeLee\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DahaeLee\\Documents\\GitHub\\AzureChatBot\\gate2\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\mali\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DahaeLee\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
