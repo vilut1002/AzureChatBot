@@ -1,0 +1,13 @@
+C:\Users\mali\source\repos\luistest\luistest\bin\Debug\netcoreapp3.1\luistest.exe
+C:\Users\mali\source\repos\luistest\luistest\bin\Debug\netcoreapp3.1\luistest.deps.json
+C:\Users\mali\source\repos\luistest\luistest\bin\Debug\netcoreapp3.1\luistest.runtimeconfig.json
+C:\Users\mali\source\repos\luistest\luistest\bin\Debug\netcoreapp3.1\luistest.runtimeconfig.dev.json
+C:\Users\mali\source\repos\luistest\luistest\bin\Debug\netcoreapp3.1\luistest.dll
+C:\Users\mali\source\repos\luistest\luistest\bin\Debug\netcoreapp3.1\luistest.pdb
+C:\Users\mali\source\repos\luistest\luistest\obj\Debug\netcoreapp3.1\luistest.csprojAssemblyReference.cache
+C:\Users\mali\source\repos\luistest\luistest\obj\Debug\netcoreapp3.1\luistest.AssemblyInfoInputs.cache
+C:\Users\mali\source\repos\luistest\luistest\obj\Debug\netcoreapp3.1\luistest.AssemblyInfo.cs
+C:\Users\mali\source\repos\luistest\luistest\obj\Debug\netcoreapp3.1\luistest.csproj.CoreCompileInputs.cache
+C:\Users\mali\source\repos\luistest\luistest\obj\Debug\netcoreapp3.1\luistest.dll
+C:\Users\mali\source\repos\luistest\luistest\obj\Debug\netcoreapp3.1\luistest.pdb
+C:\Users\mali\source\repos\luistest\luistest\obj\Debug\netcoreapp3.1\luistest.genruntimeconfig.cache
