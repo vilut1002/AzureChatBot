@@ -1,0 +1,19 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.0",
+  "body": [
+    {
+      "type": "Image",
+      "url": "https://www.bloodinfo.net/image/bd_main_bannner_11.jpg",
+      "size": "stretch"
+    }
+  ],
+  "actions": [
+      {
+        "type": "Action.OpenUrl",
+        "title": "Homepage",
+        "url": "https://www.bloodinfo.net/main.do"
+      }
+  ]
+}
