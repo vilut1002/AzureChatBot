@@ -23,13 +23,14 @@ namespace Pibot.Dialogs
         protected readonly ILogger Logger;
 
         // Dependency injection uses this constructor to instantiate MainDialog
-        public MainDialog(FlightBookingRecognizer luisRecognizer, BookingDialog bookingDialog, ILogger<MainDialog> logger)
+        public MainDialog(FlightBookingRecognizer luisRecognizer, BookingDialog bookingDialog, QnaDialog qnaDialog, ILogger<MainDialog> logger)
             : base(nameof(MainDialog))
         {
             Logger = logger;
 
             AddDialog(new TextPrompt(nameof(TextPrompt)));
             AddDialog(bookingDialog);
+            AddDialog(qnaDialog);
             AddDialog(new WaterfallDialog(nameof(WaterfallDialog), new WaterfallStep[]
             {
                 IntroStepAsync,
@@ -74,7 +75,7 @@ namespace Pibot.Dialogs
             if((string)stepContext.Result=="ÇåÇ÷ ¿¹¾àÇÏ±â")
                 return await stepContext.BeginDialogAsync(nameof(BookingDialog), new BookingDetails(), cancellationToken);
             else
-                return await stepContext.BeginDialogAsync(nameof(QnaDialog), cancellationToken);
+                return await stepContext.BeginDialogAsync(nameof(QnaDialog), new BookingDetails(), cancellationToken);
         }
 
         private async Task<DialogTurnResult> FinalStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
