@@ -27,11 +27,12 @@ namespace Pibot.Dialogs
             _logger = logger;
             _botServices = botServices;
             _userProfileAccessor = userState.CreateProperty<UserProfile>("UserProfile");
-            
+
             AddDialog(new TextPrompt(nameof(TextPrompt)));
             AddDialog(bookingDialog);
             AddDialog(new WaterfallDialog(nameof(WaterfallDialog), new WaterfallStep[]
             {
+                InitialStepAsync,
                 FinalStepAsync,
             }));
 
@@ -39,15 +40,23 @@ namespace Pibot.Dialogs
             InitialDialogId = nameof(WaterfallDialog);
         }
 
+        private async Task<DialogTurnResult> InitialStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        {
+            return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = MessageFactory.Text("무엇이 궁금하세요?") }, cancellationToken);
+        }
+
         private async Task<DialogTurnResult> FinalStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"궁금한게 있으신가요?"), cancellationToken);
-            await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = MessageFactory.Text("입력") }, cancellationToken);
             var recognizerResult = await _botServices.Dispatch.RecognizeAsync(stepContext.Context, cancellationToken);
             var topIntent = recognizerResult.GetTopScoringIntent();
-            
 
-            while (topIntent.intent != "예약")
+            if (topIntent.intent == "예약")
+                return await stepContext.BeginDialogAsync(nameof(BookingDialog), new BookingDetails(), cancellationToken);
+
+            else if (topIntent.intent == "종료")
+                return await stepContext.EndDialogAsync(null, cancellationToken);
+
+            else
             {
                 switch (topIntent.intent)
                 {
@@ -70,20 +79,17 @@ namespace Pibot.Dialogs
                         break;
 
                     default:
-                        // Catch all for unhandled intents
-                        var didntUnderstandMessageText = $"죄송해요. 못 알아들었어요.";
+                        var didntUnderstandMessageText = $"죄송합니다. 다시 말씀해주시겠어요?";
                         var didntUnderstandMessage = MessageFactory.Text(didntUnderstandMessageText, didntUnderstandMessageText, InputHints.IgnoringInput);
                         await stepContext.Context.SendActivityAsync(didntUnderstandMessage, cancellationToken);
                         break;
                 }
-                await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = MessageFactory.Text("궁금한게 있으신가요?") }, cancellationToken);
-                recognizerResult = await _botServices.Dispatch.RecognizeAsync(stepContext.Context, cancellationToken);
-                topIntent = recognizerResult.GetTopScoringIntent();
-            }
-            return await stepContext.BeginDialogAsync(nameof(BookingDialog), new BookingDetails(), cancellationToken);
-        }
 
+                return await stepContext.BeginDialogAsync(nameof(QnaDialog), new BookingDetails(), cancellationToken);
+            }
+        }
     }
 
-
 }
+
+
