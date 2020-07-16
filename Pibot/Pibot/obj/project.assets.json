@@ -7381,11 +7381,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DahaeLee\\source\\repos\\Pibot\\Pibot\\Pibot.csproj",
+      "projectUniqueName": "C:\\Users\\DahaeLee\\Documents\\GitHub\\AzureChatBot\\Pibot\\Pibot\\Pibot.csproj",
       "projectName": "Pibot",
-      "projectPath": "C:\\Users\\DahaeLee\\source\\repos\\Pibot\\Pibot\\Pibot.csproj",
+      "projectPath": "C:\\Users\\DahaeLee\\Documents\\GitHub\\AzureChatBot\\Pibot\\Pibot\\Pibot.csproj",
       "packagesPath": "C:\\Users\\DahaeLee\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DahaeLee\\source\\repos\\Pibot\\Pibot\\obj\\",
+      "outputPath": "C:\\Users\\DahaeLee\\Documents\\GitHub\\AzureChatBot\\Pibot\\Pibot\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
