@@ -35,6 +35,7 @@ namespace Pibot.Dialogs
             AddDialog(new WaterfallDialog(nameof(WaterfallDialog), new WaterfallStep[]
             {
                 NotesStepAsync,
+                CheckStepAsync,
                 NameStepAsync,
                 SexStepAsync,
                 AgeStepAsync,
@@ -49,24 +50,6 @@ namespace Pibot.Dialogs
             InitialDialogId = nameof(WaterfallDialog);
         }
 
-        private Attachment CreateAdaptiveCardAttachment()
-        {
-            var cardResourcePath = GetType().Assembly.GetManifestResourceNames().First(name => name.EndsWith("welcomeCard.json"));
-
-            using (var stream = GetType().Assembly.GetManifestResourceStream(cardResourcePath))
-            {
-                using (var reader = new StreamReader(stream))
-                {
-                    var adaptiveCard = reader.ReadToEnd();
-                    return new Attachment()
-                    {
-                        ContentType = "application/vnd.microsoft.card.adaptive",
-                        Content = JsonConvert.DeserializeObject(adaptiveCard),
-                    };
-                }
-            }
-        }
-
         private async Task<DialogTurnResult> NotesStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             var notes = $"※ 헌혈 예약 시 유의사항 ※\r\n";
@@ -76,52 +59,63 @@ namespace Pibot.Dialogs
             notes += $"- 헌혈의 집 도착 시 예약헌혈자임을 직원에게 말씀해 주십시오.\r\n";
             await stepContext.Context.SendActivityAsync(MessageFactory.Text(notes), cancellationToken);
 
-            var activity = new Attachment[]
+            return await stepContext.PromptAsync(nameof(ChoicePrompt),
+                new PromptOptions
+                {
+                    Prompt = MessageFactory.Text("어서오세요! 헌혈 예약을 시작하기 전에, 유의사항을 확인해주세요."),
+                    Choices = ChoiceFactory.ToChoices(new List<string> { "완료" }),
+                }, cancellationToken);
+        }
+
+        private async Task<DialogTurnResult> CheckStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        {
+            if (((FoundChoice)stepContext.Result).Value == "완료")
             {
+                var activity = new Attachment[]
+                {
                 new HeroCard(
-                    title: "신체조건",
-                    images: new CardImage[] { new CardImage() { Url = "https://www.bloodinfo.net/image/character_img.png" } },
-                    buttons: new CardAction[]
-                    {
-                        new CardAction(title: "열기", type: ActionTypes.OpenUrl, value: "https://www.bloodinfo.net/image/character_img.png")
-                    })
-                .ToAttachment(),
+                    images: new CardImage[] 
+                    { new CardImage() { Url = "http://drive.google.com/uc?export=view&id=1aU5SjnVy_439MoR6hrXgmpHxiP32keP7" } }
+                    ).ToAttachment(),
                 new HeroCard(
-                    title: "약물",
-                    images: new CardImage[] { new CardImage() { Url = "https://www.bloodinfo.net/image/character_img.png" } },
-                    buttons: new CardAction[]
-                    {
-                        new CardAction(title: "열기", type: ActionTypes.OpenUrl, value: "https://www.bloodinfo.net/image/character_img.png")
-                    })
-                .ToAttachment(),
+                    images: new CardImage[]
+                    { new CardImage() { Url = "http://drive.google.com/uc?export=view&id=1aU5SjnVy_439MoR6hrXgmpHxiP32keP7" } }
+                    ).ToAttachment(),
                 new HeroCard(
-                    title: "어쩌구",
-                    images: new CardImage[] { new CardImage() { Url = "https://www.bloodinfo.net/image/character_img.png" } },
-                    buttons: new CardAction[]
-                    {
-                        new CardAction(title: "열기", type: ActionTypes.OpenUrl, value: "https://www.bloodinfo.net/image/character_img.png")
-                    })
-                .ToAttachment()
-            };
+                    images: new CardImage[]
+                    { new CardImage() { Url = "http://drive.google.com/uc?export=view&id=1aU5SjnVy_439MoR6hrXgmpHxiP32keP7" } }
+                    ).ToAttachment()
+                };
 
-            var reply = MessageFactory.Attachment(activity);
-            reply.Attachments = activity;
-            reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
-            await stepContext.Context.SendActivityAsync(reply, cancellationToken);
+                var reply = MessageFactory.Attachment(activity);
+                reply.Attachments = activity;
+                reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
+                await stepContext.Context.SendActivityAsync(reply, cancellationToken);
 
-            return await stepContext.PromptAsync(nameof(ConfirmPrompt), new PromptOptions { Prompt = MessageFactory.Text("유의사항 확인 및 자가 문진을 완료하셨나요?") }, cancellationToken);
+                return await stepContext.PromptAsync(nameof(ChoicePrompt),
+                    new PromptOptions
+                    {
+                        Prompt = MessageFactory.Text("자격 조건을 꼼꼼히 읽고 결격 사유가 없는지 확인해주세요."),
+                        Choices = ChoiceFactory.ToChoices(new List<string> { "없음" , "있음" }),
+                    }, cancellationToken);
+            }
+            else
+            {
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text($"죄송합니다. 유의사항을 확인하지 않으시면 예약을 진행할 수 없어요."), cancellationToken);
+                return await stepContext.EndDialogAsync(null, cancellationToken);
+            }
         }
 
         private async Task<DialogTurnResult> NameStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            if ((bool)stepContext.Result)
+            if (((FoundChoice)stepContext.Result).Value == "없음")
             {
                 return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = MessageFactory.Text("이름을 입력해주세요.") }, cancellationToken);
             }
             else
             {
-                await stepContext.Context.SendActivityAsync(MessageFactory.Text($"유의사항 확인 및 자가 문진을 완료하지 않으시면 예약을 진행할 수 없습니다."), cancellationToken);
-                return await stepContext.BeginDialogAsync(nameof(BookingDialog), new BookingDetails(), cancellationToken);
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text($"죄송합니다. 결격 사유가 있으시면 헌혈에 참여하실 수 없어요."), cancellationToken);
+                return await stepContext.EndDialogAsync(null, cancellationToken);
             }
         }
 
