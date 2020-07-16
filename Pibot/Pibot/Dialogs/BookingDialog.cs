@@ -73,7 +73,7 @@ namespace Pibot.Dialogs
             notes += $"- 6개월 후까지 예약할 수 있으며, 당일 예약은 불가합니다.\r\n";
             notes += $"- 최근 헌혈혈액검사에 따라 헌혈이 제한될 수 있습니다.\r\n";
             notes += $"- 예약시간 경과 시 예약이 취소되니 주의해 주십시오.\r\n";
-            notes += $"- 헌혈의 집 도착 시 예약헐혈자임을 직원에게 말씀해 주십시오.\r\n";
+            notes += $"- 헌혈의 집 도착 시 예약헌혈자임을 직원에게 말씀해 주십시오.\r\n";
             await stepContext.Context.SendActivityAsync(MessageFactory.Text(notes), cancellationToken);
 
             var activity = new Attachment[]
@@ -125,6 +125,7 @@ namespace Pibot.Dialogs
             }
         }
 
+        
         private async Task<DialogTurnResult> SexStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             stepContext.Values["name"] = (string)stepContext.Result;
