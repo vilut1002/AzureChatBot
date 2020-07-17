@@ -44,6 +44,9 @@ namespace Pibot
             services.AddSingleton<QnaDialog>();
 
 
+            services.AddSingleton<QuizDialog>();
+
+
             services.AddSingleton<MainDialog>();
 
 

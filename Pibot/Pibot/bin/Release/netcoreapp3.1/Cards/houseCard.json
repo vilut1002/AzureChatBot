@@ -47,15 +47,15 @@
                   "id": "center",
                   "choices": [
                     {
-                      "title": "daechi-center",
-                      "value": "daechi-center"
+                      "title": "A center",
+                      "value": "A center"
                     },
                     {
-                      "title": "sinsa-center",
-                      "value": "sinsa-center"
+                      "title": "B center",
+                      "value": "B Center"
                     }
                   ],
-                  "value": "daechi-center"
+                  "value": "A Center"
                 }
               ],
               "actions": [
