@@ -32,8 +32,9 @@ namespace Pibot.Bots
                 // To learn more about Adaptive Cards, see https://aka.ms/msbot-adaptivecards for more details.
                 if (member.Id != turnContext.Activity.Recipient.Id)
                 {
+                    //var welcomeCard = CreateAdaptiveCardAttachment();
                     var welcomeCard = CreateAdaptiveCardAttachment();
-                    var response = MessageFactory.Attachment(welcomeCard, ssml: "Welcome to Bot Framework!");
+                    var response = MessageFactory.Attachment(welcomeCard, ssml: "Welcome");
                     await turnContext.SendActivityAsync(response, cancellationToken);
                     await Dialog.RunAsync(turnContext, ConversationState.CreateProperty<DialogState>("DialogState"), cancellationToken);                
                 }
@@ -58,6 +59,7 @@ namespace Pibot.Bots
                 }
             }
         }
+
     }
 }
 

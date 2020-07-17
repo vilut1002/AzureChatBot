@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "zILVTCEGZpFlsRWUzxcuQuJcJ1M3rh8PKF7freY0PPWZkbK7IRg1U1SX8fmGMStDjP+oOXh1aJo5XplDcc9CuQ==",
+  "dgSpecHash": "XGv1+v7PEfZFl1aHXWon64lEN4MN6cHOSykbMI4lprx1UvU1Es93x1WIN6TzVtLwXp63rIYpr4jRaxrVcGkwUg==",
   "success": true,
   "projectFilePath": "C:\\Users\\DahaeLee\\Documents\\GitHub\\AzureChatBot\\Pibot\\Pibot\\Pibot.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\DahaeLee\\.nuget\\packages\\adaptivecards\\1.2.4\\adaptivecards.1.2.4.nupkg.sha512",
     "C:\\Users\\DahaeLee\\.nuget\\packages\\adaptiveexpressions\\4.9.2\\adaptiveexpressions.4.9.2.nupkg.sha512",
     "C:\\Users\\DahaeLee\\.nuget\\packages\\antlr4.runtime\\4.6.6\\antlr4.runtime.4.6.6.nupkg.sha512",
     "C:\\Users\\DahaeLee\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.1\\microsoft.aspnetcore.jsonpatch.3.1.1.nupkg.sha512",

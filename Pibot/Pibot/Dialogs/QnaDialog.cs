@@ -42,7 +42,7 @@ namespace Pibot.Dialogs
 
         private async Task<DialogTurnResult> InitialStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = MessageFactory.Text("무엇이 궁금하세요?\r\n처음으로 돌아가려면 '종료', 예약하려면 '예약'을 입력하세요.") }, cancellationToken);
+            return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = MessageFactory.Text("무엇이 궁금하세요?\r\n(처음으로 돌아가려면 '종료', 예약하려면 '예약'을 입력하세요.)") }, cancellationToken);
         }
 
         private async Task<DialogTurnResult> FinalStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)

@@ -47,31 +47,26 @@ namespace Pibot.Dialogs
             // 히어로카드 
             var card = new HeroCard
             {
-                Title = "대한적십자사 혈액관리본부",
-                Text = "환영합니다! 원하시는 서비스를 선택하세요.",
-                Images = new List<CardImage> { new CardImage("https://www.bloodinfo.net/image/character_img.png") },
+                Images = new List<CardImage> { new CardImage("http://drive.google.com/uc?export=view&id=1naJclWdMneN6JrZHoFRdU36DFjx8AlDj") },
                 Buttons = new List<CardAction>()
-                        {
-                            new CardAction(ActionTypes.ImBack, title: "헌혈 예약하기", value: "헌혈 예약하기"),
-                            new CardAction(ActionTypes.ImBack, title: "QnA", value: "QnA"),
-                        },
+                {
+                    new CardAction(ActionTypes.ImBack, title: "헌혈 예약하기", value: "헌혈 예약하기"),
+                    new CardAction(ActionTypes.ImBack, title: "QnA", value: "QnA"),
+                },
             };
 
-            // 히어로카드 attachment 
             var attachments = new List<Attachment>();
             var reply = MessageFactory.Attachment(attachments);
             reply.Attachments.Add(card.ToAttachment());
             await stepContext.Context.SendActivityAsync(reply, cancellationToken);
 
-            var messageText = stepContext.Options?.ToString();
+            var messageText = "";
             var promptMessage = MessageFactory.Text(messageText, messageText, InputHints.ExpectingInput);
             return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = promptMessage }, cancellationToken);
         }
 
         private async Task<DialogTurnResult> ActStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            stepContext.Values["service"] = (string)stepContext.Result;
-     
             if((string)stepContext.Result=="헌혈 예약하기")
                 return await stepContext.BeginDialogAsync(nameof(BookingDialog), new BookingDetails(), cancellationToken);
             else
@@ -90,7 +85,7 @@ namespace Pibot.Dialogs
 
                 var timeProperty = new TimexProperty(result.Date);
                 var travelDateMsg = timeProperty.ToNaturalLanguage(DateTime.Now);
-                var messageText = $"헌혈 예약이 완료되었습니다. 감사합니다!";
+                var messageText = $"예약이 완료되었습니다. 감사합니다!";
                 var message = MessageFactory.Text(messageText, messageText, InputHints.IgnoringInput);
                 await stepContext.Context.SendActivityAsync(message, cancellationToken);
             }

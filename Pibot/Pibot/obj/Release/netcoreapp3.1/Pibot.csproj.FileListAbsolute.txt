@@ -1,5 +1,4 @@
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\bin\Release\netcoreapp3.1\appsettings.Development.json
-C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\bin\Release\netcoreapp3.1\Cards\TimeCard.json
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\bin\Release\netcoreapp3.1\CognitiveModels\FlightBooking.json
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\bin\Release\netcoreapp3.1\DeploymentTemplates\new-rg-parameters.json
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\bin\Release\netcoreapp3.1\DeploymentTemplates\preexisting-rg-parameters.json
@@ -55,9 +54,6 @@ C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\bin\Release\netcorea
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.csprojAssemblyReference.cache
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.AssemblyInfoInputs.cache
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.AssemblyInfo.cs
-C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.csproj.CoreCompileInputs.cache
-C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.RazorTargetAssemblyInfo.cache
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.csproj.CopyComplete
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\staticwebassets\Pibot.StaticWebAssets.Manifest.cache
@@ -65,3 +61,9 @@ C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcorea
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.dll
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.pdb
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.genruntimeconfig.cache
+C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\bin\Release\netcoreapp3.1\AdaptiveCards.dll
+C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.csproj.CoreCompileInputs.cache
+C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\bin\Release\netcoreapp3.1\Cards\timeCard.json
+C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\bin\Release\netcoreapp3.1\Cards\dateCard.json

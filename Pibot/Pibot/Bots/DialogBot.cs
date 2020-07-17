@@ -49,5 +49,6 @@ namespace Pibot.Bots
             // Run the Dialog with the new message Activity.
             await Dialog.RunAsync(turnContext, ConversationState.CreateProperty<DialogState>("DialogState"), cancellationToken);
         }
+
     }
 }

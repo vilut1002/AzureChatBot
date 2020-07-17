@@ -5,14 +5,14 @@
   "body": [
     {
       "type": "Image",
-      "url": "https://www.bloodinfo.net/image/bd_main_bannner_11.jpg",
+      "url": "http://drive.google.com/uc?export=view&id=1YoQ41o48qChrqW9iO6IB_XgyTTOTqeH2",
       "size": "stretch"
     }
   ],
   "actions": [
       {
         "type": "Action.OpenUrl",
-        "title": "Homepage",
+        "title": "HOMEPAGE",
         "url": "https://www.bloodinfo.net/main.do"
       }
   ]
