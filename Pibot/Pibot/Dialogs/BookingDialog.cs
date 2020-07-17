@@ -259,18 +259,39 @@ namespace Pibot.Dialogs
         {
             stepContext.Values["phone"] = (string)stepContext.Result;
 
-            return await stepContext.PromptAsync(nameof(ChoicePrompt),
-            new PromptOptions
+            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"헌혈의집을 선택해주세요."), cancellationToken);
+
+            // Create the Adaptive Card
+            var cardJson = File.ReadAllText("./Cards/houseCard.json");
+            var cardAttachment = new Attachment()
             {
-                Prompt = MessageFactory.Text("방문하실 헌혈의 집 센터를 선택해주세요."),
-                Choices = ChoiceFactory.ToChoices(new List<string> { "신촌점", "홍대점", "합정점" }),
-            }, cancellationToken);
+                ContentType = "application/vnd.microsoft.card.adaptive",
+                Content = JsonConvert.DeserializeObject(cardJson),
+            };
+
+            // Create the text prompt
+            var opts = new PromptOptions
+            {
+                Prompt = new Activity
+                {
+                    Attachments = new List<Attachment>() { cardAttachment },
+                    Type = ActivityTypes.Message,
+                }
+            };
+
+            // Display a Text Prompt and wait for input
+            return await stepContext.PromptAsync(AdaptivePromptId, opts, cancellationToken);
         }
 
 
         private async Task<DialogTurnResult> DateStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            stepContext.Values["house"] = ((FoundChoice)stepContext.Result).Value;
+            //await stepContext.Context.SendActivityAsync($"{stepContext.Result}"); //데이터 확인 출력용
+
+            string json = @$"{stepContext.Result}";
+            JObject jobj = JObject.Parse(json);
+
+            stepContext.Values["house"] = jobj["center"].ToString();
 
             await stepContext.Context.SendActivityAsync(MessageFactory.Text($"날짜를 선택해주세요."), cancellationToken);
 
@@ -328,9 +349,7 @@ namespace Pibot.Dialogs
         }
 
         private async Task<DialogTurnResult> ConfirmStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-        {
-            // await stepContext.Context.SendActivityAsync($"{stepContext.Result}"); //데이터 확인 출력용
-            
+        {   
             string json = @$"{stepContext.Result}";
             JObject jobj = JObject.Parse(json);
             

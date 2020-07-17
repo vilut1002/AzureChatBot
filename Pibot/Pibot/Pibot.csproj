@@ -29,4 +29,6 @@
     </Content>
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties cards_4timecard_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>

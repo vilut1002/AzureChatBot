@@ -67,3 +67,5 @@ C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcorea
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\bin\Release\netcoreapp3.1\Cards\timeCard.json
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\bin\Release\netcoreapp3.1\Cards\dateCard.json
+C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\bin\Release\netcoreapp3.1\Cards\houseCard.json
+C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\bin\Release\netcoreapp3.1\dateCard.json

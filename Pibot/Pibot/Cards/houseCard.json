@@ -1,0 +1,89 @@
+/*
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2",
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "iconUrl": "http://drive.google.com/uc?export=view&id=1zM_Pped_zGuGAy_nJpGa_IAw6ng01M3Z",
+       "title": "seoul"
+    },
+    {
+      "type": "Action.Submit",
+      "iconUrl": "http://drive.google.com/uc?export=view&id=1zM_Pped_zGuGAy_nJpGa_IAw6ng01M3Z",
+      "title": "incheon"
+    },
+    {
+      "type": "Action.Submit",
+      "iconUrl": "http://drive.google.com/uc?export=view&id=1zM_Pped_zGuGAy_nJpGa_IAw6ng01M3Z",
+      "title": "kyungi"
+    }
+  ]
+}
+*/
+
+/*
+수정사항 : choiceSet을 여러개 넣으면 id를 동일하게 쓸 수 없음, 한글이 안됨
+*/
+
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2",
+  "actions": [
+    {
+      "type": "Action.ShowCard",
+      "card": {
+        "type": "AdaptiveCard",
+        "actions": [
+          {
+            "type": "Action.ShowCard",
+            "card": {
+              "type": "AdaptiveCard",
+              "body": [
+                {
+                  "type": "Input.ChoiceSet",
+                  "id": "center",
+                  "choices": [
+                    {
+                      "title": "daechi-center",
+                      "value": "daechi-center"
+                    },
+                    {
+                      "title": "sinsa-center",
+                      "value": "sinsa-center"
+                    }
+                  ],
+                  "value": "daechi-center"
+                }
+              ],
+              "actions": [
+                {
+                  "type": "Action.Submit",
+                  "title": "OK"
+                }
+              ]
+            },
+            "title": "gangnam"
+          },
+          {
+            "type": "Action.ShowCard",
+            "title": "not yet",
+            "card": {
+              "type": "AdaptiveCard"
+            }
+          }
+        ]
+      },
+      "title": "seoul"
+    },
+    {
+      "type": "Action.ShowCard",
+      "card": {
+        "type": "AdaptiveCard"
+      },
+      "title": "not yet "
+    }
+  ]
+}

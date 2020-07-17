@@ -4,11 +4,10 @@
   "version": "1.0",
   "body": [
     {
-      "type": "Input.Time",
-      "id": "time",
-      "min": "08:00",
-      "max": "20:00",
-      "value": "15:30"
+      "type": "Input.Date",
+      "id": "date",
+      "placeholder": "Enter a date",
+      "value": "2020-08-15"
     }
   ],
   "actions": [
