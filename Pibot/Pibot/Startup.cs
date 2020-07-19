@@ -34,9 +34,6 @@ namespace Pibot
             // Create the Conversation state. (Used by the Dialog system itself.)
             services.AddSingleton<ConversationState>();
 
-            // Register LUIS recognizer
-            services.AddSingleton<FlightBookingRecognizer>();
-
 
             services.AddSingleton<BookingDialog>();
 
@@ -53,8 +50,8 @@ namespace Pibot
             services.AddSingleton<IBotServices, BotServices>();
 
 
-            services.AddTransient<IBot, DialogAndWelcomeBot<MainDialog>>(); //입장시 웰컴카드 출력하고 메인다이얼로그 감
-            //services.AddTransient<IBot, DialogBot<MainDialog>>(); //메인다이얼로그에서 시작 말시켜야 반응
+            //services.AddTransient<IBot, DialogAndWelcomeBot<MainDialog>>(); //입장시 웰컴카드 출력하고 메인다이얼로그 감
+            services.AddTransient<IBot, DialogBot<MainDialog>>(); //메인다이얼로그에서 시작 말시켜야 반응
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

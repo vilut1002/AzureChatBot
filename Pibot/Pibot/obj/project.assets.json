@@ -7404,19 +7404,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\vilut\\.nuget\\packages\\": {}
+    "C:\\Users\\DahaeLee\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vilut\\Azure\\0718\\AzureChatBot\\Pibot\\Pibot\\Pibot.csproj",
+      "projectUniqueName": "C:\\Users\\DahaeLee\\Documents\\GitHub\\AzureChatBot\\Pibot\\Pibot\\Pibot.csproj",
       "projectName": "Pibot",
-      "projectPath": "C:\\Users\\vilut\\Azure\\0718\\AzureChatBot\\Pibot\\Pibot\\Pibot.csproj",
-      "packagesPath": "C:\\Users\\vilut\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vilut\\Azure\\0718\\AzureChatBot\\Pibot\\Pibot\\obj\\",
+      "projectPath": "C:\\Users\\DahaeLee\\Documents\\GitHub\\AzureChatBot\\Pibot\\Pibot\\Pibot.csproj",
+      "packagesPath": "C:\\Users\\DahaeLee\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\DahaeLee\\Documents\\GitHub\\AzureChatBot\\Pibot\\Pibot\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\vilut\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\DahaeLee\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
