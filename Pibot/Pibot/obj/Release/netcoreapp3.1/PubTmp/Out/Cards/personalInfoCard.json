@@ -1,0 +1,95 @@
+﻿{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "이름"
+    },
+    {
+      "type": "Input.Text",
+      "id": "name",
+      "placeholder": "이름을 입력해주세요."
+    },
+    {
+      "type": "TextBlock",
+      "text": "성별",
+      "spacing": "Medium"
+    },
+    {
+      "type": "Input.ChoiceSet",
+      "style": "expanded",
+      "choices": [
+        {
+          "title": "남성",
+          "value": "남성"
+        },
+        {
+          "title": "여성",
+          "value": "여성"
+        }
+      ],
+      "placeholder": "Placeholder text",
+      "id": "sex",
+      "value": "남성"
+    },
+    {
+      "type": "TextBlock",
+      "text": "나이",
+      "spacing": "Medium"
+    },
+    {
+      "type": "Input.Number",
+      "id": "age",
+      "min": 16,
+      "max": 69,
+      "placeholder": "16세 미만, 69세 초과는 헌혈 불가합니다."
+    },
+    {
+      "type": "TextBlock",
+      "text": "연락처",
+      "spacing": "Medium"
+    },
+    {
+      "type": "Input.Text",
+      "placeholder": "연락처를 입력해주세요.",
+      "id": "phone",
+      "style": "Tel",
+      "maxLength": 11
+    },
+    {
+      "type": "TextBlock",
+      "spacing": "Medium",
+      "text": "개인정보 수집 및 이용에 동의하십니까?"
+    },
+    {
+      "type": "Input.ChoiceSet",
+      "style": "expanded",
+      "choices": [
+        {
+          "title": "동의함",
+          "value": "true"
+        },
+        {
+          "title": "동의하지 않음",
+          "value": "false"
+        }
+      ],
+      "placeholder": "Placeholder text",
+      "id": "agree",
+      "value": "true"
+    },
+    {
+      "type": "TextBlock",
+      "spacing": "Medium",
+      "text": "　"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "OK"
+    }
+  ]
+}

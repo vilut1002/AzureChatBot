@@ -20,12 +20,14 @@ namespace Pibot.Dialogs
 {
     public class MainDialog : ComponentDialog
     {
+        private readonly IStatePropertyAccessor<UserProfile> _userProfileAccessor;
         protected readonly ILogger Logger;
 
         // Dependency injection uses this constructor to instantiate MainDialog
-        public MainDialog(BookingDialog bookingDialog, QnaDialog qnaDialog, QuizDialog quizDialog, ILogger<MainDialog> logger)
+        public MainDialog(BookingDialog bookingDialog, QnaDialog qnaDialog, QuizDialog quizDialog, ILogger<MainDialog> logger, UserState userState)
             : base(nameof(MainDialog))
         {
+            _userProfileAccessor = userState.CreateProperty<UserProfile>("UserProfile");
             Logger = logger;
 
             AddDialog(new TextPrompt(nameof(TextPrompt)));
@@ -79,17 +81,13 @@ namespace Pibot.Dialogs
 
         private async Task<DialogTurnResult> FinalStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            // If the child dialog ("BookingDialog") was cancelled, the user failed to confirm or if the intent wasn't BookFlight
-            // the Result here will be null.
             if (stepContext.Result is BookingDetails result)
             {
-                // Now we have all the booking details call the booking service.
-
-                // If the call to the booking service was successful tell the user.
+                var userProfile = await _userProfileAccessor.GetAsync(stepContext.Context, () => new UserProfile(), cancellationToken);
 
                 var timeProperty = new TimexProperty(result.Date);
                 var travelDateMsg = timeProperty.ToNaturalLanguage(DateTime.Now);
-                var messageText = $"예약이 완료되었습니다. 감사합니다!";
+                var messageText = $"{userProfile.Name}님의 예약이 성공적으로 접수되었습니다. 감사합니다!";
                 var message = MessageFactory.Text(messageText, messageText, InputHints.IgnoringInput);
                 await stepContext.Context.SendActivityAsync(message, cancellationToken);
             }

@@ -7,7 +7,7 @@ namespace Pibot
 {
     public class BookingDetails
     {
-        public string House { get; set; }
+        public string Center { get; set; }
 
         public string Date { get; set; }
 

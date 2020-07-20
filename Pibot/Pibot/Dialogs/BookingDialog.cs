@@ -12,13 +12,12 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 using Microsoft.Bot.Schema;
-using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using AdaptiveCards;
 
 using Bot.AdaptiveCard.Prompt;
+using System;
 
 namespace Pibot.Dialogs
 {
@@ -34,7 +33,6 @@ namespace Pibot.Dialogs
 
             AddDialog(new AdaptiveCardPrompt(AdaptivePromptId));
             AddDialog(new TextPrompt(nameof(TextPrompt)));
-            AddDialog(new NumberPrompt<int>(nameof(NumberPrompt<int>), AgePromptValidatorAsync));
             AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
             AddDialog(new DateResolverDialog());
@@ -42,10 +40,7 @@ namespace Pibot.Dialogs
             {
                 NotesStepAsync,
                 CheckStepAsync,
-                NameStepAsync,
-                SexStepAsync,
-                AgeStepAsync,
-                PhoneStepAsync,
+                PersonalInfoStepAsync,
                 HouseChoiceStepAsync,
                 DateStepAsync,
                 TimeStepAsync,
@@ -83,11 +78,11 @@ namespace Pibot.Dialogs
             card.Body.Add(new AdaptiveTextBlock()
             {
                 Text = "헌혈 예약을 시작하기 전에, 유의사항을 확인해주세요.\r\n" +
-                       "- 6개월 후까지 예약할 수 있으며, 당일 예약은 불가합니다.\r\n" +
-                       "- 최근 헌혈혈액검사에 따라 헌혈이 제한될 수 있습니다.\r\n" +
-                       "- 예약시간 경과 시 예약이 취소되니 주의해 주십시오.\r\n" +
-                       "- 헌혈의 집 도착 시 예약헌혈자임을 직원에게 말씀해 주십시오.",
-                 Size = AdaptiveTextSize.Default
+                        "- 6개월 후까지 예약할 수 있으며, 당일 예약은 불가합니다.\r\n" +
+                        "- 최근 헌혈혈액검사에 따라 헌혈이 제한될 수 있습니다.\r\n" +
+                        "- 예약시간 경과 시 예약이 취소되니 주의해 주십시오.\r\n" +
+                        "- 헌혈의 집 도착 시 예약헌혈자임을 직원에게 말씀해 주십시오.",
+                    Size = AdaptiveTextSize.Default
             });
 
             return await stepContext.PromptAsync(
@@ -104,8 +99,8 @@ namespace Pibot.Dialogs
                 },
                 cancellationToken); ;
         }
-
-        private async Task<DialogTurnResult> CheckStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        
+            private async Task<DialogTurnResult> CheckStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             if (((FoundChoice)stepContext.Result).Value == "완료")
             {
@@ -174,12 +169,29 @@ namespace Pibot.Dialogs
             }
         }
 
-        private async Task<DialogTurnResult> NameStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> PersonalInfoStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             if ((string)stepContext.Result == "없음")
             {
-                await stepContext.Context.SendActivityAsync(MessageFactory.Text($"감사합니다! 헌혈 예약을 시작할게요."), cancellationToken);
-                return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = MessageFactory.Text("이름을 입력해주세요.") }, cancellationToken);
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text($"감사합니다! 예약에 필요한 개인정보를 입력해주세요."), cancellationToken);
+
+                var cardJson = File.ReadAllText("./Cards/personalInfoCard.json");
+                var cardAttachment = new Attachment()
+                {
+                    ContentType = "application/vnd.microsoft.card.adaptive",
+                    Content = JsonConvert.DeserializeObject(cardJson),
+                };
+
+                var opts = new PromptOptions
+                {
+                    Prompt = new Activity
+                    {
+                        Attachments = new List<Attachment>() { cardAttachment },
+                        Type = ActivityTypes.Message,
+                    }
+                };
+
+                return await stepContext.PromptAsync(AdaptivePromptId, opts, cancellationToken);
             }
             else
             {
@@ -188,79 +200,25 @@ namespace Pibot.Dialogs
             }
         }
 
-        
-        private async Task<DialogTurnResult> SexStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-        {
-            stepContext.Values["name"] = (string)stepContext.Result;
-
-            var choices = new[] { "남성", "여성" };
-            var card = new AdaptiveCard(new AdaptiveSchemaVersion(1, 0))
-            { 
-                Actions = choices.Select(choice => new AdaptiveSubmitAction
-                {
-                    Title = choice,
-                    Data = choice, 
-                }).ToList<AdaptiveAction>(),
-            };
-
-            card.Body.Add(new AdaptiveTextBlock()
-            {
-                Text = "성별을 선택해주세요.",
-                Size = AdaptiveTextSize.Default
-            }) ;
-
-            // Prompt
-            return await stepContext.PromptAsync(
-                nameof(ChoicePrompt),
-                new PromptOptions
-                {
-                    Prompt = (Activity)MessageFactory.Attachment(new Attachment
-                    {
-                        ContentType = AdaptiveCard.ContentType,
-                        Content = JObject.FromObject(card),
-                    }),
-                    Choices = ChoiceFactory.ToChoices(choices),
-                    Style = ListStyle.None,
-                },
-                cancellationToken); ;
-        }
-
-        private async Task<DialogTurnResult> AgeStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-        {
-            stepContext.Values["sex"] = ((FoundChoice)stepContext.Result).Value;
-
-            var promptOptions = new PromptOptions
-            {
-                Prompt = MessageFactory.Text("나이를 입력해주세요."),
-                RetryPrompt = MessageFactory.Text("다시 입력해주세요."),
-            };
-            return await stepContext.PromptAsync(nameof(NumberPrompt<int>), promptOptions, cancellationToken);
-        }
-
-        private static Task<bool> AgePromptValidatorAsync(PromptValidatorContext<int> promptContext, CancellationToken cancellationToken)
-        {
-            return Task.FromResult(promptContext.Recognized.Succeeded && promptContext.Recognized.Value > 0);
-        }
-
-        private async Task<DialogTurnResult> PhoneStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-        {
-            if ((int)stepContext.Result >= 16 && (int)stepContext.Result <= 69)
-            {
-                stepContext.Values["age"] = (int)stepContext.Result;
-                return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = MessageFactory.Text("연락처를 입력해주세요.") }, cancellationToken);
-            }
-            else
-            {
-                await stepContext.Context.SendActivityAsync(MessageFactory.Text($"죄송합니다. 나이가 16세 미만, 69세 초과일 경우 헌혈을 하실 수 없습니다."), cancellationToken);
-                return await stepContext.EndDialogAsync(null, cancellationToken);
-            }
-        }
-
         private async Task<DialogTurnResult> HouseChoiceStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            stepContext.Values["phone"] = (string)stepContext.Result;
+            string json = @$"{stepContext.Result}";
+            JObject jobj = JObject.Parse(json);
 
-            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"헌혈의집을 선택해주세요."), cancellationToken);
+            stepContext.Values["agree"] = jobj["agree"].ToString();
+
+            if ((string)stepContext.Values["agree"] == "false")
+            {
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text($"죄송합니다. 개인정보 수집 및 이용에 동의하지 않으시면 예약을 진행할 수 없어요."), cancellationToken);
+                return await stepContext.EndDialogAsync(null, cancellationToken);
+            }
+
+            stepContext.Values["name"] = jobj["name"].ToString();
+            stepContext.Values["sex"] = jobj["sex"].ToString();
+            stepContext.Values["age"] = jobj["age"].ToString();
+            stepContext.Values["phone"] = jobj["phone"].ToString();
+
+            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"{(string)stepContext.Values["name"]}님의 소중한 개인정보 저장이 완료되었습니다."), cancellationToken);
 
             // Create the Adaptive Card
             var cardJson = File.ReadAllText("./Cards/houseCard.json");
@@ -292,9 +250,7 @@ namespace Pibot.Dialogs
             string json = @$"{stepContext.Result}";
             JObject jobj = JObject.Parse(json);
 
-            stepContext.Values["house"] = jobj["center"].ToString();
-
-            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"날짜를 선택해주세요."), cancellationToken);
+            stepContext.Values["center"] = jobj["center"].ToString();
 
             // Create the Adaptive Card
             var cardJson = File.ReadAllText("./Cards/dateCard.json");
@@ -324,8 +280,6 @@ namespace Pibot.Dialogs
             JObject jobj = JObject.Parse(json);
 
             stepContext.Values["date"] = jobj["date"].ToString();
-
-            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"시간을 선택해주세요."), cancellationToken);
 
             // Create the Adaptive Card
             var cardJson = File.ReadAllText("./Cards/timeCard.json");
@@ -361,11 +315,13 @@ namespace Pibot.Dialogs
 
             userProfile.Name = (string)stepContext.Values["name"];
             userProfile.Sex = (string)stepContext.Values["sex"];
-            userProfile.Age = (int)stepContext.Values["age"];
+            userProfile.Age = Convert.ToInt32(stepContext.Values["age"]);
             userProfile.Phone = (string)stepContext.Values["phone"];
-            bookingDetails.House = (string)stepContext.Values["house"];
+            bookingDetails.Center = (string)stepContext.Values["center"];
             bookingDetails.Date = (string)stepContext.Values["date"];
             bookingDetails.Time = (string)stepContext.Values["time"];
+
+            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"예약 정보를 확인하신 후 예약을 확정해주세요."), cancellationToken);
 
             var choices = new[] { "예약확정"};
             var card = new AdaptiveCard(new AdaptiveSchemaVersion(1, 0))
@@ -380,21 +336,58 @@ namespace Pibot.Dialogs
             card.Body.Add(new AdaptiveTextBlock()
             {
                 Text = $"{userProfile.Name}님의 예약정보",
-                Size = AdaptiveTextSize.Medium
+                Size = AdaptiveTextSize.Medium,
+                Color = AdaptiveTextColor.Accent,
+                Weight = AdaptiveTextWeight.Bolder 
+            });
+
+            card.Body.Add(new AdaptiveFactSet()
+            {
+                Spacing = AdaptiveSpacing.Medium,
+                Facts = new List<AdaptiveFact>()
+                {
+                    new AdaptiveFact()
+                    {
+                    Title = "이름",
+                    Value = $"{userProfile.Name}"
+                    },
+                    new AdaptiveFact()
+                    {
+                    Title = "성별",
+                    Value = $"{userProfile.Sex}"
+                    },
+                    new AdaptiveFact()
+                    {
+                    Title = "나이",
+                    Value = $"{userProfile.Age}"
+                    },
+                    new AdaptiveFact()
+                    {
+                    Title = "연락처",
+                    Value = $"{userProfile.Phone}"
+                    },
+                    new AdaptiveFact()
+                    {
+                    Title = "헌혈의집",
+                    Value = $"{bookingDetails.Center}"
+                    },
+                    new AdaptiveFact()
+                    {
+                    Title = "날짜",
+                    Value = $"{bookingDetails.Date}"
+                    },
+                    new AdaptiveFact()
+                    {
+                    Title = "시간",
+                    Value = $"{bookingDetails.Time}"
+                    }
+                }
             });
 
             card.Body.Add(new AdaptiveTextBlock()
             {
-                Text = "　\r\n" +
-                $"- 이름 : {userProfile.Name}\r\n" +
-                $"- 성별 : {userProfile.Sex}\r\n" +
-                $"- 나이 : {userProfile.Age}\r\n" +
-                $"- 연락처 : {userProfile.Phone}\r\n" +
-                $"- 헌혈의집 : {bookingDetails.House}\r\n" +
-                $"- 날짜 : {bookingDetails.Date}\r\n" +
-                $"- 시간 : {bookingDetails.Time}\r\n" +
-                "　\r\n",
-            Size = AdaptiveTextSize.Default
+                Text = "　",
+                Size = AdaptiveTextSize.Medium
             });
 
             return await stepContext.PromptAsync(
