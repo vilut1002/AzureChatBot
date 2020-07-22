@@ -118,7 +118,7 @@ namespace Pibot.Dialogs
                 stepContext.Values["time"] = bookingDetails.Time;
                 stepContext.Values["center"] = bookingDetails.Center;
 
-                string datetime = stepContext.Values["date"] + "T" + stepContext.Values["time"] + ":00+09:00";
+                string datetime = stepContext.Values["date"] + "T" + stepContext.Values["time"] + ":00-03:00";
 
                 choices[0] = "예약취소";
                 choices[1] = "종료";
@@ -163,14 +163,12 @@ namespace Pibot.Dialogs
                         new AdaptiveFact()
                         {
                         Title = "날짜",
-                        Value = $"{(string)stepContext.Values["date"]}"     // 이거 대신 
-                        // Value = "{{DATE("+$"{datetime}"+", SHORT)}}"     // 이걸로 수정
+                        Value = "{{DATE("+$"{datetime}"+", SHORT)}}"
                         },
                         new AdaptiveFact()
                         {
                         Title = "시간",
-                        Value = $"{(string)stepContext.Values["time"]}"     // 이거 대신
-                        // Value = "{{TIME("+$"{datetime}"+")}}"            // 이걸로 수정
+                        Value = "{{TIME("+$"{datetime}"+")}}"
                         }
                     }
                 });
@@ -269,16 +267,20 @@ namespace Pibot.Dialogs
                     //{
                     if (reader.Read())
                     {
+                        DateTime myDate = reader.GetDateTime(5);
+                        string convertedDate = myDate.ToString("yyyy-MM-ddhh:mm");
+                        string dateStr = convertedDate.Substring(0, 10);
+                        string timeStr = convertedDate.Substring(10);
 
                         BookingDetails bookingQuery = new BookingDetails();
-                        bookingQuery.ID = reader.GetInt32(0);   //ID
+                        bookingQuery.ID = reader.GetInt32(0); //ID
                         bookingQuery.Name = reader.GetString(1); //name
                         bookingQuery.Sex = reader.GetString(2); //sex
                         bookingQuery.Age = reader.GetInt32(3); //Age
                         bookingQuery.Phone = reader.GetString(4);
-                        bookingQuery.Date = (reader.GetDateTime(5)).ToString().Substring(0, 11);    //Date
-                        bookingQuery.Time = (reader.GetDateTime(5)).ToString().Substring(11);     //Time
-                        bookingQuery.Center = reader.GetString(6);      //center
+                        bookingQuery.Date = dateStr;
+                        bookingQuery.Time = timeStr;
+                        bookingQuery.Center = reader.GetString(6); //center
 
                         return bookingQuery;
                     }
