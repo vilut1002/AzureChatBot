@@ -60,7 +60,6 @@ namespace Pibot.Dialogs
                 }
             };
 
-            // Display a Text Prompt and wait for input
             return await stepContext.PromptAsync(AdaptivePromptId, opts, cancellationToken);
         }
 
@@ -71,8 +70,6 @@ namespace Pibot.Dialogs
 
             stepContext.Values["name"] = jobj["name"].ToString(); 
             stepContext.Values["phone"] = (string)jobj["phone"].ToString();
-
-            // 수민 - 쿼리해서 예약 내역 가져오기
 
             try
             {
@@ -88,7 +85,7 @@ namespace Pibot.Dialogs
                     connection.Open();
                     StringBuilder sb = new StringBuilder();
                     bookingDetails = Submit_Query(connection, $"SELECT * from reservInfo WHERE Phone = '{stepContext.Values["phone"]}';");
-                    await stepContext.Context.SendActivityAsync(MessageFactory.Text("쿼리보냄"), cancellationToken);
+                    //await stepContext.Context.SendActivityAsync(MessageFactory.Text("쿼리보냄"), cancellationToken);
                 }
             }
             catch (SqlException e)
@@ -99,21 +96,20 @@ namespace Pibot.Dialogs
             var choices = new string[2];
             var card = new AdaptiveCard(new AdaptiveSchemaVersion(1, 0));
 
-            //수민 - 예약 내역이 존재하지 않는 경우 조건문만 써주세요
+            //예약 내역이 존재하지 않는 경우
             if (bookingDetails == null)
             {
                 choices[0] = "예약하기";
                 choices[1] = "종료";
-                await stepContext.Context.SendActivityAsync(MessageFactory.Text(bookingDetails.Name.ToString()), cancellationToken);
                 card.Body.Add(new AdaptiveTextBlock()
                 {
                     Text = $"{stepContext.Values["name"]}님의 예약 내역이 존재하지 않습니다.\r\n헌혈 예약 메뉴로 이동하시겠어요?",
                 });
             }
-            // 수민 - 예약 정보 가져온 걸로 변수부분 다 바꿔주세요
+
             else 
             {
-                await stepContext.Context.SendActivityAsync(MessageFactory.Text(bookingDetails.Center.ToString()), cancellationToken);
+                //await stepContext.Context.SendActivityAsync(MessageFactory.Text(bookingDetails.Center.ToString()), cancellationToken);
                 stepContext.Values["name"] = bookingDetails.Name;
                 stepContext.Values["sex"] = bookingDetails.Sex;
                 stepContext.Values["age"] = bookingDetails.Age;
@@ -213,7 +209,7 @@ namespace Pibot.Dialogs
 
             else if (((FoundChoice)stepContext.Result).Value == "예약취소")
             {
-                // 수민 - 예약 내역 삭제하기
+                //예약 내역 삭제하기
                 try
                 {
                     SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
@@ -236,7 +232,7 @@ namespace Pibot.Dialogs
                 }
                 //-------------------------------------------------------예약 삭제 끝
 
-                await stepContext.Context.SendActivityAsync(MessageFactory.Text("예약이 성공적으로 취소되었습니다."), cancellationToken);
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text("예약이 성공적으로 취소되었습니다. 감사합니다!"), cancellationToken);
                 return await stepContext.EndDialogAsync(null, cancellationToken);
             }
 

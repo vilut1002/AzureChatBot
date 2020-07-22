@@ -1,0 +1,42 @@
+﻿{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Q10. 적십자사는 혈액 사업을 통해 사익과 이윤창출을 추구한다?",
+      "size": "Medium",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "type": "ImageSet",
+      "images": [
+        {
+          "type": "Image",
+          "size": "Medium",
+          "url": "http://drive.google.com/uc?export=view&id=1OgIN0Ed_9xjuBLbEz2NhCBFOY72Wb9N2",
+          "selectAction": {
+            "type": "Action.Submit",
+            "data": {
+              "choice": "o"
+            }
+          }
+        },
+        {
+          "type": "Image",
+          "size": "Medium",
+          "url": "http://drive.google.com/uc?export=view&id=1Y2ZwcVfwePdTBMG5d3ubyBQu3jtExcz9",
+          "selectAction": {
+            "type": "Action.Submit",
+            "data": {
+              "choice": "x"
+            }
+          }
+        }
+      ],
+      "imageSize": "Medium"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+﻿{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Q9. 나의 헌혈기록이나 검사결과에 대한 비밀보장이 어렵다?",
+      "size": "Medium",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "type": "ImageSet",
+      "images": [
+        {
+          "type": "Image",
+          "size": "Medium",
+          "url": "http://drive.google.com/uc?export=view&id=1OgIN0Ed_9xjuBLbEz2NhCBFOY72Wb9N2",
+          "selectAction": {
+            "type": "Action.Submit",
+            "data": {
+              "choice": "o"
+            }
+          }
+        },
+        {
+          "type": "Image",
+          "size": "Medium",
+          "url": "http://drive.google.com/uc?export=view&id=1Y2ZwcVfwePdTBMG5d3ubyBQu3jtExcz9",
+          "selectAction": {
+            "type": "Action.Submit",
+            "data": {
+              "choice": "x"
+            }
+          }
+        }
+      ],
+      "imageSize": "Medium"
+    }
+  ]
+}
