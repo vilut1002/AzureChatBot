@@ -46,7 +46,7 @@ namespace Pibot.Dialogs
         {
             var card = new HeroCard
             {
-                Images = new List<CardImage> { new CardImage("http://drive.google.com/uc?export=view&id=1naJclWdMneN6JrZHoFRdU36DFjx8AlDj") },
+                Images = new List<CardImage> { new CardImage("http://drive.google.com/uc?export=view&id=1wU1TiDkOX54c_aeYEnOjNAzb0MB6JdoI") },
                 Buttons = new List<CardAction>()
                 {
                     new CardAction(ActionTypes.ImBack, title: "헌혈 예약하기", value: "헌혈 예약하기"),
@@ -81,6 +81,7 @@ namespace Pibot.Dialogs
                           "- 헌혈의 집 운영시간 알려줘.\r\n" +
                           "- 여드름 치료제 복용 중인데 헌혈할 수 있을까?\r\n" +
                           "- 헌혈하러 갈 때 뭐 필요해?\r\n" +
+                          "- 은평구 헌혈의집 / 성남시 헌혈의집 알려줘"+
                           "※ 그만하시려면 '종료'를 입력하세요.\r\n";
                 await stepContext.Context.SendActivityAsync(MessageFactory.Text(msg), cancellationToken);
                 return await stepContext.BeginDialogAsync(nameof(QnaDialog), null, cancellationToken);
