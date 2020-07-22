@@ -23,14 +23,11 @@ namespace Pibot.Dialogs
 {
     public class BookingDialog : ComponentDialog
     {
-        private readonly IStatePropertyAccessor<UserProfile> _userProfileAccessor;
         static string AdaptivePromptId = "adaptive";
 
         public BookingDialog(UserState userState)
             : base(nameof(BookingDialog))
         {
-            _userProfileAccessor = userState.CreateProperty<UserProfile>("UserProfile");
-
             AddDialog(new AdaptiveCardPrompt(AdaptivePromptId));
             AddDialog(new TextPrompt(nameof(TextPrompt)));
             AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));
@@ -42,6 +39,8 @@ namespace Pibot.Dialogs
                 CheckStepAsync,
                 PersonalInfoStepAsync,
                 HouseChoiceStepAsync,
+                //Center1StepAsync,
+                //Center2StepAsync,
                 DateStepAsync,
                 TimeStepAsync,
                 ConfirmStepAsync,
@@ -242,6 +241,16 @@ namespace Pibot.Dialogs
             return await stepContext.PromptAsync(AdaptivePromptId, opts, cancellationToken);
         }
 
+        /*
+        private async Task<DialogTurnResult> Center1StepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        {
+            string json = @$"{stepContext.Result}";
+            JObject jobj = JObject.Parse(json);
+
+            stepContext.Values["agree"] = jobj["agree"].ToString();
+
+        }
+        */
 
         private async Task<DialogTurnResult> DateStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
@@ -310,17 +319,6 @@ namespace Pibot.Dialogs
             
             stepContext.Values["time"] = jobj["time"].ToString();
 
-            var userProfile = await _userProfileAccessor.GetAsync(stepContext.Context, () => new UserProfile(), cancellationToken);
-            var bookingDetails = (BookingDetails)stepContext.Options;
-
-            userProfile.Name = (string)stepContext.Values["name"];
-            userProfile.Sex = (string)stepContext.Values["sex"];
-            userProfile.Age = Convert.ToInt32(stepContext.Values["age"]);
-            userProfile.Phone = (string)stepContext.Values["phone"];
-            bookingDetails.Center = (string)stepContext.Values["center"];
-            bookingDetails.Date = (string)stepContext.Values["date"];
-            bookingDetails.Time = (string)stepContext.Values["time"];
-
             await stepContext.Context.SendActivityAsync(MessageFactory.Text($"예약 정보를 확인하신 후 예약을 확정해주세요."), cancellationToken);
 
             var choices = new[] { "예약확정"};
@@ -335,7 +333,7 @@ namespace Pibot.Dialogs
 
             card.Body.Add(new AdaptiveTextBlock()
             {
-                Text = $"{userProfile.Name}님의 예약정보",
+                Text = $"{(string)stepContext.Values["name"]}님의 예약정보",
                 Size = AdaptiveTextSize.Medium,
                 Color = AdaptiveTextColor.Accent,
                 Weight = AdaptiveTextWeight.Bolder 
@@ -349,37 +347,37 @@ namespace Pibot.Dialogs
                     new AdaptiveFact()
                     {
                     Title = "이름",
-                    Value = $"{userProfile.Name}"
+                    Value = $"{(string)stepContext.Values["name"]}"
                     },
                     new AdaptiveFact()
                     {
                     Title = "성별",
-                    Value = $"{userProfile.Sex}"
+                    Value = $"{(string)stepContext.Values["sex"]}"
                     },
                     new AdaptiveFact()
                     {
                     Title = "나이",
-                    Value = $"{userProfile.Age}"
+                    Value = $"{Convert.ToInt32(stepContext.Values["age"])}"
                     },
                     new AdaptiveFact()
                     {
                     Title = "연락처",
-                    Value = $"{userProfile.Phone}"
+                    Value = $"{(string)stepContext.Values["phone"]}"
                     },
                     new AdaptiveFact()
                     {
                     Title = "헌혈의집",
-                    Value = $"{bookingDetails.Center}"
+                    Value = $"{(string)stepContext.Values["center"]}"
                     },
                     new AdaptiveFact()
                     {
                     Title = "날짜",
-                    Value = $"{bookingDetails.Date}"
+                    Value = $"{(string)stepContext.Values["date"]}"
                     },
                     new AdaptiveFact()
                     {
                     Title = "시간",
-                    Value = $"{bookingDetails.Time}"
+                    Value = $"{(string)stepContext.Values["time"]}"
                     }
                 }
             });
@@ -410,6 +408,15 @@ namespace Pibot.Dialogs
             if (((FoundChoice)stepContext.Result).Value == "예약확정")
             {
                 var bookingDetails = (BookingDetails)stepContext.Options;
+
+                bookingDetails.Name = (string)stepContext.Values["name"];
+                bookingDetails.Sex = (string)stepContext.Values["sex"];
+                bookingDetails.Age = Convert.ToInt32(stepContext.Values["age"]);
+                bookingDetails.Phone = (string)stepContext.Values["phone"];
+                bookingDetails.Center = (string)stepContext.Values["center"];
+                bookingDetails.Date = (string)stepContext.Values["date"];
+                bookingDetails.Time = (string)stepContext.Values["time"];
+
                 return await stepContext.EndDialogAsync(bookingDetails, cancellationToken);
             }
             else
