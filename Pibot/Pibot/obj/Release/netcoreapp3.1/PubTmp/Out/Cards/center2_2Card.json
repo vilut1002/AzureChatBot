@@ -1,0 +1,32 @@
+﻿{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2",
+  "body": [
+    {
+      "type": "Input.ChoiceSet",
+      "choices": [
+        {
+          "title": "성남·수원",
+          "value": "성남·수원"
+        },
+        {
+          "title": "안양·군포·안산",
+          "value": "안양·군포·안산"
+        },
+        {
+          "title": "화성·용인·평택",
+          "value": "화성·용인·평택"
+        }
+      ],
+      "value": "성남·수원",
+      "id": "center2"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "OK"
+    }
+  ]
+}
