@@ -69,7 +69,7 @@ namespace Pibot.Dialogs
                         "- 최근 헌혈혈액검사에 따라 헌혈이 제한될 수 있습니다.\r\n" +
                         "- 예약시간 경과 시 예약이 취소되니 주의해 주십시오.\r\n" +
                         "- 헌혈의 집 도착 시 예약헌혈자임을 직원에게 말씀해 주십시오.",
-                    Size = AdaptiveTextSize.Default
+                Size = AdaptiveTextSize.Default
             });
 
             return await stepContext.PromptAsync(
@@ -86,8 +86,8 @@ namespace Pibot.Dialogs
                 },
                 cancellationToken); ;
         }
-        
-            private async Task<DialogTurnResult> CheckStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+
+        private async Task<DialogTurnResult> CheckStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             if (((FoundChoice)stepContext.Result).Value == "완료")
             {
@@ -469,15 +469,17 @@ namespace Pibot.Dialogs
         }
 
         private async Task<DialogTurnResult> ConfirmStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-        {   
+        {
             string json = @$"{stepContext.Result}";
             JObject jobj = JObject.Parse(json);
-            
+
             stepContext.Values["time"] = jobj["time"].ToString();
+
+            string datetime = stepContext.Values["date"] + "T" + stepContext.Values["time"] + ":00+09:00";
 
             await stepContext.Context.SendActivityAsync(MessageFactory.Text($"예약 정보를 확인하신 후 예약을 확정해주세요."), cancellationToken);
 
-            var choices = new[] { "예약확정"};
+            var choices = new[] { "예약확정" };
             var card = new AdaptiveCard(new AdaptiveSchemaVersion(1, 0))
             {
                 Actions = choices.Select(choice => new AdaptiveSubmitAction
@@ -492,7 +494,7 @@ namespace Pibot.Dialogs
                 Text = $"{(string)stepContext.Values["name"]}님의 예약정보",
                 Size = AdaptiveTextSize.Medium,
                 Color = AdaptiveTextColor.Accent,
-                Weight = AdaptiveTextWeight.Bolder 
+                Weight = AdaptiveTextWeight.Bolder
             });
 
             card.Body.Add(new AdaptiveFactSet()
@@ -528,12 +530,12 @@ namespace Pibot.Dialogs
                     new AdaptiveFact()
                     {
                     Title = "날짜",
-                    Value = $"{(string)stepContext.Values["date"]}"
+                    Value = "{{DATE("+$"{datetime}"+", SHORT)}}"
                     },
                     new AdaptiveFact()
                     {
                     Title = "시간",
-                    Value = $"{(string)stepContext.Values["time"]}"
+                    Value = "{{TIME("+$"{datetime}"+")}}"
                     }
                 }
             });

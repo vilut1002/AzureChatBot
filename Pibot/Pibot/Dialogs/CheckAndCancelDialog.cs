@@ -118,6 +118,8 @@ namespace Pibot.Dialogs
                 stepContext.Values["time"] = bookingDetails.Time;
                 stepContext.Values["center"] = bookingDetails.Center;
 
+                string datetime = stepContext.Values["date"] + "T" + stepContext.Values["time"] + ":00+09:00";
+
                 choices[0] = "예약취소";
                 choices[1] = "종료";
                 card.Body.Add(new AdaptiveTextBlock()
@@ -161,12 +163,14 @@ namespace Pibot.Dialogs
                         new AdaptiveFact()
                         {
                         Title = "날짜",
-                        Value = $"{(string)stepContext.Values["date"]}"
+                        Value = $"{(string)stepContext.Values["date"]}"     // 이거 대신 
+                        // Value = "{{DATE("+$"{datetime}"+", SHORT)}}"     // 이걸로 수정
                         },
                         new AdaptiveFact()
                         {
                         Title = "시간",
-                        Value = $"{(string)stepContext.Values["time"]}"
+                        Value = $"{(string)stepContext.Values["time"]}"     // 이거 대신
+                        // Value = "{{TIME("+$"{datetime}"+")}}"            // 이걸로 수정
                         }
                     }
                 });
