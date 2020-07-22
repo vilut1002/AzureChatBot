@@ -12,6 +12,8 @@ using System.Linq;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 using AdaptiveCards;
 using System;
+using System.Data.SqlClient;
+using System.Text;
 
 
 namespace Pibot.Dialogs 
@@ -19,6 +21,8 @@ namespace Pibot.Dialogs
     public class CheckAndCancelDialog : ComponentDialog
     {
         static string AdaptivePromptId = "adaptive";
+
+        private BookingDetails bookingDetails= new BookingDetails();
 
         public CheckAndCancelDialog(UserState userState) : base(nameof(CheckAndCancelDialog))
         {
@@ -66,84 +70,111 @@ namespace Pibot.Dialogs
             JObject jobj = JObject.Parse(json);
 
             stepContext.Values["name"] = jobj["name"].ToString(); 
-            stepContext.Values["phone"] = jobj["phone"].ToString(); 
+            stepContext.Values["phone"] = (string)jobj["phone"].ToString();
 
             // 수민 - 쿼리해서 예약 내역 가져오기
-            // 이름 : stepContext.Values["name"]
-            // 연락처 : stepContext.Values["phone"]
+
+            try
+            {
+                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+
+                builder.DataSource = "team19-server.database.windows.net";
+                builder.UserID = "chatbot19";
+                builder.Password = "presnacks2020!";
+                builder.InitialCatalog = "pibotDB";
+
+                using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                {
+                    connection.Open();
+                    StringBuilder sb = new StringBuilder();
+                    bookingDetails = Submit_Query(connection, $"SELECT * from reservInfo WHERE Phone = '{stepContext.Values["phone"]}';");
+                    await stepContext.Context.SendActivityAsync(MessageFactory.Text("쿼리보냄"), cancellationToken);
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
 
             var choices = new string[2];
             var card = new AdaptiveCard(new AdaptiveSchemaVersion(1, 0));
 
             //수민 - 예약 내역이 존재하지 않는 경우 조건문만 써주세요
-            //if (예약 내역이 존재하지 않음)
-            //{
-            //    choices[0] = "예약하기";
-            //    choices[1] = "종료";
-
-            //    card.Body.Add(new AdaptiveTextBlock()
-            //    {
-            //        Text = $"{stepContext.Values["name"]}님의 예약 내역이 존재하지 않습니다.\r\n헌혈 예약 메뉴로 이동하시겠어요?",
-            //    });
-            //}
-
+            if (bookingDetails == null)
+            {
+                choices[0] = "예약하기";
+                choices[1] = "종료";
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text(bookingDetails.Name.ToString()), cancellationToken);
+                card.Body.Add(new AdaptiveTextBlock()
+                {
+                    Text = $"{stepContext.Values["name"]}님의 예약 내역이 존재하지 않습니다.\r\n헌혈 예약 메뉴로 이동하시겠어요?",
+                });
+            }
             // 수민 - 예약 정보 가져온 걸로 변수부분 다 바꿔주세요
-            //else 
-            //{
-            //    choices[1] = "예약취소";
-            //    choices[2] = "종료";
+            else 
+            {
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text(bookingDetails.Center.ToString()), cancellationToken);
+                stepContext.Values["name"] = bookingDetails.Name;
+                stepContext.Values["sex"] = bookingDetails.Sex;
+                stepContext.Values["age"] = bookingDetails.Age;
+                stepContext.Values["phone"] = bookingDetails.Phone;
+                stepContext.Values["date"] = bookingDetails.Date;
+                stepContext.Values["time"] = bookingDetails.Time;
+                stepContext.Values["center"] = bookingDetails.Center;
 
-            //    card.Body.Add(new AdaptiveTextBlock()
-            //    {
-            //        Text = $"{(string)stepContext.Values["name"]}님의 예약정보",
-            //        Size = AdaptiveTextSize.Medium,
-            //        Color = AdaptiveTextColor.Accent,
-            //        Weight = AdaptiveTextWeight.Bolder
-            //    });
+                choices[0] = "예약취소";
+                choices[1] = "종료";
+                card.Body.Add(new AdaptiveTextBlock()
+                {
+                    Text = $"{(string)stepContext.Values["name"]}님의 예약정보",
+                    Size = AdaptiveTextSize.Medium,
+                    Color = AdaptiveTextColor.Accent,
+                    Weight = AdaptiveTextWeight.Bolder
+                });
 
-            //    card.Body.Add(new AdaptiveFactSet()
-            //    {
-            //        Spacing = AdaptiveSpacing.Medium,
-            //        Facts = new List<AdaptiveFact>()
-            //        {
-            //            new AdaptiveFact()
-            //            {
-            //            Title = "이름",
-            //            Value = $"{(string)stepContext.Values["name"]}"
-            //            },
-            //            new AdaptiveFact()
-            //            {
-            //            Title = "성별",
-            //            Value = $"{(string)stepContext.Values["sex"]}"
-            //            },
-            //            new AdaptiveFact()
-            //            {
-            //            Title = "나이",
-            //            Value = $"{Convert.ToInt32(stepContext.Values["age"])}"
-            //            },
-            //            new AdaptiveFact()
-            //            {
-            //            Title = "연락처",
-            //            Value = $"{(string)stepContext.Values["phone"]}"
-            //            },
-            //            new AdaptiveFact()
-            //            {
-            //            Title = "헌혈의집",
-            //            Value = $"{(string)stepContext.Values["center"]}"
-            //            },
-            //            new AdaptiveFact()
-            //            {
-            //            Title = "날짜",
-            //            Value = $"{(string)stepContext.Values["date"]}"
-            //            },
-            //            new AdaptiveFact()
-            //            {
-            //            Title = "시간",
-            //            Value = $"{(string)stepContext.Values["time"]}"
-            //            }
-            //        }
-            //    });
-            //}
+                card.Body.Add(new AdaptiveFactSet()
+                {
+                    Spacing = AdaptiveSpacing.Medium,
+                    Facts = new List<AdaptiveFact>()
+                    {
+                        new AdaptiveFact()
+                        {
+                        Title = "이름",
+                        Value = $"{(string)stepContext.Values["name"]}"
+                        },
+                        new AdaptiveFact()
+                        {
+                        Title = "성별",
+                        Value = $"{(string)stepContext.Values["sex"]}"
+                        },
+                        new AdaptiveFact()
+                        {
+                        Title = "나이",
+                        Value = $"{Convert.ToInt32(stepContext.Values["age"])}"
+                        },
+                        new AdaptiveFact()
+                        {
+                        Title = "연락처",
+                        Value = $"{(string)stepContext.Values["phone"]}"
+                        },
+                        new AdaptiveFact()
+                        {
+                        Title = "헌혈의집",
+                        Value = $"{(string)stepContext.Values["center"]}"
+                        },
+                        new AdaptiveFact()
+                        {
+                        Title = "날짜",
+                        Value = $"{(string)stepContext.Values["date"]}"
+                        },
+                        new AdaptiveFact()
+                        {
+                        Title = "시간",
+                        Value = $"{(string)stepContext.Values["time"]}"
+                        }
+                    }
+                });
+            }
 
             card.Body.Add(new AdaptiveTextBlock()
             {
@@ -183,6 +214,27 @@ namespace Pibot.Dialogs
             else if (((FoundChoice)stepContext.Result).Value == "예약취소")
             {
                 // 수민 - 예약 내역 삭제하기
+                try
+                {
+                    SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+
+                    builder.DataSource = "team19-server.database.windows.net";
+                    builder.UserID = "chatbot19";
+                    builder.Password = "presnacks2020!";
+                    builder.InitialCatalog = "pibotDB";
+
+                    using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                    {
+                        connection.Open();
+                        StringBuilder sb = new StringBuilder();
+                        Submit_Cancel(connection,bookingDetails.ID);
+                    }
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+                //-------------------------------------------------------예약 삭제 끝
 
                 await stepContext.Context.SendActivityAsync(MessageFactory.Text("예약이 성공적으로 취소되었습니다."), cancellationToken);
                 return await stepContext.EndDialogAsync(null, cancellationToken);
@@ -203,6 +255,50 @@ namespace Pibot.Dialogs
                 Content = JsonConvert.DeserializeObject(adaptiveCardJson),
             };
             return adaptiveCardAttachment;
+        }
+
+        public BookingDetails Submit_Query(SqlConnection connection, string sql_query)
+        {
+
+            using (var command = new SqlCommand(sql_query, connection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    
+                    //while (reader.Read())
+                    //{
+                    if (reader.Read())
+                    {
+
+                        BookingDetails bookingQuery = new BookingDetails();
+                        bookingQuery.ID = reader.GetInt32(0);   //ID
+                        bookingQuery.Name = reader.GetString(1); //name
+                        bookingQuery.Sex = reader.GetString(2); //sex
+                        bookingQuery.Age = reader.GetInt32(3); //Age
+                        bookingQuery.Phone = reader.GetString(4);
+                        bookingQuery.Date = (reader.GetDateTime(5)).ToString().Substring(0, 11);    //Date
+                        bookingQuery.Time = (reader.GetDateTime(5)).ToString().Substring(11);     //Time
+                        bookingQuery.Center = reader.GetString(6);      //center
+
+                        return bookingQuery;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
+
+        static void Submit_Cancel(SqlConnection connection, int ID)
+        {
+            string sql = $"DELETE FROM reservInfo WHERE reserv_id = '{ID}';";
+
+            using (var command = new SqlCommand(sql, connection))
+            {
+                int rowsAffected = command.ExecuteNonQuery();
+                Console.WriteLine(rowsAffected + " = rows affected.");
+            }
         }
 
     }
