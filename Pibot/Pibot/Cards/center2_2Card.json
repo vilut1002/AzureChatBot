@@ -4,23 +4,23 @@
   "version": "1.2",
   "body": [
     {
-      "type": "TextBlock",
-      "text": "헌혈의 집을 선택해주세요. "
-    },
-    {
       "type": "Input.ChoiceSet",
       "choices": [
         {
-          "title": "서울",
-          "value": "서울"
+          "title": "성남·수원",
+          "value": "성남·수원"
         },
         {
-          "title": "경기",
-          "value": "경기"
+          "title": "안양·군포·안산",
+          "value": "안양·군포·안산"
+        },
+        {
+          "title": "화성·용인·평택",
+          "value": "화성·용인·평택"
         }
       ],
-      "id": "center1",
-      "value": "서울"
+      "value": "성남·수원",
+      "id": "center2"
     }
   ],
   "actions": [

@@ -1,0 +1,48 @@
+﻿{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2",
+  "body": [
+    {
+      "type": "Input.ChoiceSet",
+      "choices": [
+        {
+          "title": "강북·노원·성북",
+          "value": "강북·노원·성북"
+        },
+        {
+          "title": "광진·동대문·성동·중랑",
+          "value": "광진·동대문·성동·중랑"
+        },
+        {
+          "title": "은평·서대문·마포",
+          "value": "은평·서대문·마포"
+        },
+        {
+          "title": "종로·중구",
+          "value": "종로·중구"
+        },
+        {
+          "title": "강동·송파·강남·서초",
+          "value": "강동·송파·강남·서초"
+        },
+        {
+          "title": "동작·관악·영등포",
+          "value": "동작·관악·영등포"
+        },
+        {
+          "title": "강서·양천·구로",
+          "value": "강서·양천·구로"
+        }
+      ],
+      "value": "강북·노원·성북",
+      "id": "center2"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "OK"
+    }
+  ]
+}

@@ -3,18 +3,13 @@
 //
 // Generated with Bot Builder V4 SDK Template for Visual Studio CoreBot v4.9.2
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Logging;
-using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
-
-using Pibot.CognitiveModels;
 
 namespace Pibot.Dialogs
 {
@@ -23,13 +18,14 @@ namespace Pibot.Dialogs
         protected readonly ILogger Logger;
 
         // Dependency injection uses this constructor to instantiate MainDialog
-        public MainDialog(BookingDialog bookingDialog, QnaDialog qnaDialog, QuizDialog quizDialog, ILogger<MainDialog> logger, UserState userState)
+        public MainDialog(BookingDialog bookingDialog, CheckAndCancelDialog checkAndCancelDialog, QnaDialog qnaDialog, QuizDialog quizDialog, ILogger<MainDialog> logger, UserState userState)
             : base(nameof(MainDialog))
         {
             Logger = logger;
 
             AddDialog(new TextPrompt(nameof(TextPrompt)));
             AddDialog(bookingDialog);
+            AddDialog(checkAndCancelDialog);
             AddDialog(qnaDialog);
             AddDialog(quizDialog);
             AddDialog(new WaterfallDialog(nameof(WaterfallDialog), new WaterfallStep[]
@@ -45,13 +41,13 @@ namespace Pibot.Dialogs
 
         private async Task<DialogTurnResult> IntroStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            // 히어로카드 
             var card = new HeroCard
             {
                 Images = new List<CardImage> { new CardImage("http://drive.google.com/uc?export=view&id=1naJclWdMneN6JrZHoFRdU36DFjx8AlDj") },
                 Buttons = new List<CardAction>()
                 {
                     new CardAction(ActionTypes.ImBack, title: "헌혈 예약하기", value: "헌혈 예약하기"),
+                    new CardAction(ActionTypes.ImBack, title: "예약 확인·취소", value: "예약 확인·취소"),
                     new CardAction(ActionTypes.ImBack, title: "QnA", value: "QnA"),
                     new CardAction(ActionTypes.ImBack, title: "QUIZ", value: "QUIZ")
                 },
@@ -69,12 +65,23 @@ namespace Pibot.Dialogs
 
         private async Task<DialogTurnResult> ActStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            if((string)stepContext.Result=="헌혈 예약하기")
+            if ((string)stepContext.Result == "헌혈 예약하기")
                 return await stepContext.BeginDialogAsync(nameof(BookingDialog), new BookingDetails(), cancellationToken);
+            else if ((string)stepContext.Result == "예약 확인·취소")
+                return await stepContext.BeginDialogAsync(nameof(CheckAndCancelDialog), null, cancellationToken);
             else if ((string)stepContext.Result == "QUIZ")
-                return await stepContext.BeginDialogAsync(nameof(QuizDialog), new BookingDetails(), cancellationToken);
+                return await stepContext.BeginDialogAsync(nameof(QuizDialog), null, cancellationToken);
             else
-                return await stepContext.BeginDialogAsync(nameof(QnaDialog), new BookingDetails(), cancellationToken);
+            {
+                var msg = "헌혈에 대해 궁금하신 것을 알려드릴게요!\r\n" +
+                          "다음과 같이 입력해보세요.\r\n" +
+                          "- 헌혈의 집 운영시간 알려줘.\r\n" +
+                          "- 여드름 치료제 복용 중인데 헌혈할 수 있을까?\r\n" +
+                          "- 헌혈하러 갈 때 뭐 필요해?\r\n" +
+                          "※ 처음으로 돌아가시려면 '종료'를 입력하세요.\r\n";
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text(msg), cancellationToken);
+                return await stepContext.BeginDialogAsync(nameof(QnaDialog), null, cancellationToken);
+            }
         }
 
         private async Task<DialogTurnResult> FinalStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
@@ -86,7 +93,6 @@ namespace Pibot.Dialogs
                 await stepContext.Context.SendActivityAsync(message, cancellationToken);
             }
 
-            // Restart the main dialog with a different message the second time around
             var promptMessage = "";
             return await stepContext.ReplaceDialogAsync(InitialDialogId, promptMessage, cancellationToken);
         }

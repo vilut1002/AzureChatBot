@@ -1,70 +1,26 @@
-{
+ï»¿{
   "type": "AdaptiveCard",
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
   "version": "1.2",
   "body": [
     {
       "type": "TextBlock",
-      "text": "ÇåÇ÷ÀÇ ÁıÀ» ¼±ÅÃÇØÁÖ¼¼¿ä. "
+      "text": "í—Œí˜ˆì˜ ì§‘ì„ ì„ íƒí•´ì£¼ì„¸ìš”. "
     },
     {
       "type": "Input.ChoiceSet",
       "choices": [
         {
-          "title": "¼­¿ï",
-          "value": "¼­¿ï"
+          "title": "ì„œìš¸",
+          "value": "ì„œìš¸"
         },
         {
-          "title": "°æ±â",
-          "value": "°æ±â"
-        },
-        {
-          "title": "ÀÎÃµ",
-          "value": "ÀÎÃµ"
-        },
-        {
-          "title": "°­¿ø",
-          "value": "°­¿ø"
-        },
-        {
-          "title": "ÃæºÏ",
-          "value": "ÃæºÏ"
-        },
-        {
-          "title": "´ëÀü¼¼Á¾Ãæ³²",
-          "value": "´ëÀü¼¼Á¾Ãæ³²"
-        },
-        {
-          "title": "ÀüºÏ",
-          "value": "ÀüºÏ"
-        },
-        {
-          "title": "±¤ÁÖÀü³²",
-          "value": "±¤ÁÖÀü³²"
-        },
-        {
-          "title": "´ë±¸°æºÏ",
-          "value": "´ë±¸°æºÏ"
-        },
-        {
-          "title": "ºÎ»ê",
-          "value": "ºÎ»ê"
-        },
-        {
-          "title": "¿ï»ê",
-          "value": "¿ï»ê"
-        },
-        {
-          "title": "°æ³²",
-          "value": "°æ³²"
-        },
-        {
-          "title": "Á¦ÁÖ",
-          "value": "Á¦ÁÖ"
+          "title": "ê²½ê¸°",
+          "value": "ê²½ê¸°"
         }
       ],
-      "id": "location1",
-      "value": "¼­¿ï"
+      "id": "center1",
+      "value": "ì„œìš¸"
     }
   ],
   "actions": [

@@ -38,6 +38,9 @@ namespace Pibot
             services.AddSingleton<BookingDialog>();
 
 
+            services.AddSingleton<CheckAndCancelDialog>();
+
+
             services.AddSingleton<QnaDialog>();
 
 

@@ -1,17 +1,12 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime.Models;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Logging;
-using Pibot.CognitiveModels;
 using Microsoft.Bot.Builder.Dialogs;
-using Newtonsoft.Json;
 
 namespace Pibot.Dialogs
 {
@@ -20,14 +15,13 @@ namespace Pibot.Dialogs
         private readonly ILogger<QnaDialog> _logger;
         private readonly IBotServices _botServices;
 
-        public QnaDialog(IBotServices botServices, ILogger<QnaDialog> logger, BookingDialog bookingDialog, UserState userState)
+        public QnaDialog(IBotServices botServices, ILogger<QnaDialog> logger, UserState userState)
             : base(nameof(QnaDialog))
         {
             _logger = logger;
             _botServices = botServices;
 
             AddDialog(new TextPrompt(nameof(TextPrompt)));
-            AddDialog(bookingDialog);
             AddDialog(new WaterfallDialog(nameof(WaterfallDialog), new WaterfallStep[]
             {
                 InitialStepAsync,
@@ -40,7 +34,7 @@ namespace Pibot.Dialogs
 
         private async Task<DialogTurnResult> InitialStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = MessageFactory.Text("무엇이 궁금하세요?\r\n(처음으로 돌아가려면 '종료', 예약하려면 '예약'을 입력하세요.)") }, cancellationToken);
+            return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = MessageFactory.Text("") }, cancellationToken);
         }
 
         private async Task<DialogTurnResult> FinalStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
@@ -49,7 +43,10 @@ namespace Pibot.Dialogs
             var topIntent = recognizerResult.GetTopScoringIntent();
 
             if (topIntent.intent == "예약")
+            {
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text("헌혈 예약 메뉴로 이동합니다."), cancellationToken);
                 return await stepContext.BeginDialogAsync(nameof(BookingDialog), new BookingDetails(), cancellationToken);
+            }
 
             else if (topIntent.intent == "종료")
                 return await stepContext.EndDialogAsync(null, cancellationToken);
@@ -83,7 +80,7 @@ namespace Pibot.Dialogs
                         break;
                 }
 
-                return await stepContext.BeginDialogAsync(nameof(QnaDialog), new BookingDetails(), cancellationToken);
+                return await stepContext.BeginDialogAsync(nameof(QnaDialog), null, cancellationToken);
             }
         }
     }

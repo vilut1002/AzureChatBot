@@ -1,0 +1,39 @@
+﻿{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "이름"
+    },
+    {
+      "type": "Input.Text",
+      "id": "name",
+      "placeholder": "이름을 입력해주세요."
+    },
+    {
+      "type": "TextBlock",
+      "text": "연락처",
+      "spacing": "Medium"
+    },
+    {
+      "type": "Input.Text",
+      "placeholder": "'-' 제외하고 숫자만 입력해주세요.",
+      "id": "phone",
+      "style": "Tel",
+      "maxLength": 11
+    },
+    {
+      "type": "TextBlock",
+      "spacing": "Medium",
+      "text": "　"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "OK"
+    }
+  ]
+}
