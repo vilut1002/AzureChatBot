@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
+using System.Linq;
+using Microsoft.Bot.Schema;
+using Newtonsoft.Json.Linq;
+using AdaptiveCards;
+using System.IO;
 
 namespace Pibot.Dialogs
 {
@@ -44,14 +49,40 @@ namespace Pibot.Dialogs
 
         private async Task<DialogTurnResult> StartStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            
-            // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-            return await stepContext.PromptAsync(nameof(ChoicePrompt), 
-                new PromptOptions 
-                { 
-                    Prompt = MessageFactory.Text("*** 헌혈에 대한 여러 오해와 진실을 알아보는 시간! *** \r\n헌혈에 관한 퀴즈는 총 10문제 입니다.)"),
-                    Choices = ChoiceFactory.ToChoices(new List<string> { "시작하기"})
-                }, cancellationToken);
+            var choices = new[] { "시작하기" };
+            var card = new AdaptiveCard(new AdaptiveSchemaVersion(1, 0))
+            {
+                Actions = choices.Select(choice => new AdaptiveSubmitAction
+                {
+                    Title = choice,
+                    Data = choice,
+                }).ToList<AdaptiveAction>(),
+            };
+
+            card.Body.Add(new AdaptiveTextBlock()
+            {
+                Text = "헌혈에 대한 여러 오해와 진실을 알아보는 시간!",
+                Color = AdaptiveTextColor.Accent,
+                Size = AdaptiveTextSize.Medium,
+                Weight = AdaptiveTextWeight.Bolder
+            });
+
+            card.Body.Add(new AdaptiveTextBlock()
+            {
+                Text = "헌혈에 관한 퀴즈는 총 10문제 입니다",
+                Size = AdaptiveTextSize.Default
+            });
+
+            return await stepContext.PromptAsync(
+                nameof(ChoicePrompt),
+                new PromptOptions
+                {
+                    Prompt = (Activity)MessageFactory.Attachment(new Attachment
+                    {ContentType = AdaptiveCard.ContentType, Content = JObject.FromObject(card),}),
+                    Choices = ChoiceFactory.ToChoices(choices),
+                    Style = ListStyle.None,
+                },
+                cancellationToken); 
         }
 
         private static async Task<DialogTurnResult> Q1StepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
@@ -237,12 +268,41 @@ namespace Pibot.Dialogs
                       "- 많은 사람들이 아직도 혈액사업에 대해 많은 오해를 가지고 있습니다. 가장 많은 오해가 바로 혈액을 병원에 공급하고 받는 혈액수가와 연관된 부분일 것입니다. \n\n" +
                       "- 대한적십자사는 혈액관리에 사용되는 재원을 혈액수가에만 의존하고 있으며, 국민들이 지로 형태로 납부하는 적십자회비와는 전혀 무관합니다. \n\n" +
                       "- 혈액수가는 혈액원의 인건비, 의료품비, 기념품비, 헌혈의 집 임대비등 운영비와 홍보비 등에 사용되며, 우리나라의 혈액수가는 일본, 미국 등 주요 OECD국가의 1 / 4 수준입니다.";
-            return await stepContext.PromptAsync(nameof(ChoicePrompt),
+
+            var choices = new[] { "결과 보기" };
+            var card = new AdaptiveCard(new AdaptiveSchemaVersion(1, 0))
+            {
+                Actions = choices.Select(choice => new AdaptiveSubmitAction
+                {
+                    Title = choice,
+                    Data = choice,
+                }).ToList<AdaptiveAction>(),
+            };
+
+            card.Body.Add(new AdaptiveTextBlock()
+            {
+                Text = "퀴즈 완료",
+                Color = AdaptiveTextColor.Accent,
+                Size = AdaptiveTextSize.Medium,
+                Weight = AdaptiveTextWeight.Bolder
+            });
+
+            card.Body.Add(new AdaptiveTextBlock()
+            {
+                Text = "점수를 알아보세요!",
+                Size = AdaptiveTextSize.Default
+            });
+
+            return await stepContext.PromptAsync(
+                nameof(ChoicePrompt),
                 new PromptOptions
                 {
-                    Prompt = MessageFactory.Text(msg),
-                    Choices = ChoiceFactory.ToChoices(new List<string> { "퀴즈 결과 보기" }),
-                }, cancellationToken);
+                    Prompt = (Activity)MessageFactory.Attachment(new Attachment
+                    { ContentType = AdaptiveCard.ContentType, Content = JObject.FromObject(card), }),
+                    Choices = ChoiceFactory.ToChoices(choices),
+                    Style = ListStyle.None,
+                },
+                cancellationToken);
         }
 
         private static async Task<DialogTurnResult> SummaryStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)

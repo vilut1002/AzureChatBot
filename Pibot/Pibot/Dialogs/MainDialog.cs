@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.Dialogs.Choices;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Logging;
 
@@ -24,6 +25,7 @@ namespace Pibot.Dialogs
             Logger = logger;
 
             AddDialog(new TextPrompt(nameof(TextPrompt)));
+            AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
             AddDialog(bookingDialog);
             AddDialog(checkAndCancelDialog);
             AddDialog(qnaDialog);
@@ -33,6 +35,7 @@ namespace Pibot.Dialogs
                 IntroStepAsync,
                 ActStepAsync,
                 FinalStepAsync,
+                ReturnStepAsync
             }));
 
             // The initial child Dialog to run.
@@ -78,7 +81,7 @@ namespace Pibot.Dialogs
                           "- 헌혈의 집 운영시간 알려줘.\r\n" +
                           "- 여드름 치료제 복용 중인데 헌혈할 수 있을까?\r\n" +
                           "- 헌혈하러 갈 때 뭐 필요해?\r\n" +
-                          "※ 처음으로 돌아가시려면 '종료'를 입력하세요.\r\n";
+                          "※ 그만하시려면 '종료'를 입력하세요.\r\n";
                 await stepContext.Context.SendActivityAsync(MessageFactory.Text(msg), cancellationToken);
                 return await stepContext.BeginDialogAsync(nameof(QnaDialog), null, cancellationToken);
             }
@@ -87,14 +90,18 @@ namespace Pibot.Dialogs
         private async Task<DialogTurnResult> FinalStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             if (stepContext.Result is BookingDetails result)
-            {
-                var messageText = $"{result.Name}님의 예약이 성공적으로 접수되었습니다. 감사합니다!";
-                var message = MessageFactory.Text(messageText, messageText, InputHints.IgnoringInput);
-                await stepContext.Context.SendActivityAsync(message, cancellationToken);
-            }
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text($"{result.Name}님의 예약이 성공적으로 접수되었습니다. 감사합니다!"), cancellationToken);
 
-            var promptMessage = "";
-            return await stepContext.ReplaceDialogAsync(InitialDialogId, promptMessage, cancellationToken);
+            return await stepContext.PromptAsync(nameof(ChoicePrompt),
+                new PromptOptions
+                {
+                    Choices = ChoiceFactory.ToChoices(new List<string> { "처음으로" }),
+                }, cancellationToken);
+        }
+
+        private async Task<DialogTurnResult> ReturnStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        {
+            return await stepContext.ReplaceDialogAsync(InitialDialogId, null, cancellationToken);
         }
     }
 }

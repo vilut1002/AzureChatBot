@@ -68,79 +68,94 @@ namespace Pibot.Dialogs
             stepContext.Values["name"] = jobj["name"].ToString(); 
             stepContext.Values["phone"] = jobj["phone"].ToString(); 
 
-            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"테스트용 출력 사용자 이름 : {stepContext.Values["name"]}"), cancellationToken);
-            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"테스트용 출력 연락처 : {stepContext.Values["phone"]}"), cancellationToken);
+            // 수민 - 쿼리해서 예약 내역 가져오기
+            // 이름 : stepContext.Values["name"]
+            // 연락처 : stepContext.Values["phone"]
 
-            // 수민 쿼리해서 예약 내역 가져오기
+            var choices = new string[2];
+            var card = new AdaptiveCard(new AdaptiveSchemaVersion(1, 0));
 
-            var choices = new[] { "예약취소", "처음으로" };
-            var card = new AdaptiveCard(new AdaptiveSchemaVersion(1, 0))
-            {
-                Actions = choices.Select(choice => new AdaptiveSubmitAction
-                {
-                    Title = choice,
-                    Data = choice,
-                }).ToList<AdaptiveAction>(),
-            };
+            //수민 - 예약 내역이 존재하지 않는 경우 조건문만 써주세요
+            //if (예약 내역이 존재하지 않음)
+            //{
+            //    choices[0] = "예약하기";
+            //    choices[1] = "종료";
 
-            /* 수민 예약내역 가져온 걸로 변수부분 다 채우고 주석 풀기
-            card.Body.Add(new AdaptiveTextBlock()
-            {
-                Text = $"{(string)stepContext.Values["name"]}님의 예약정보",
-                Size = AdaptiveTextSize.Medium,
-                Color = AdaptiveTextColor.Accent,
-                Weight = AdaptiveTextWeight.Bolder
-            });
+            //    card.Body.Add(new AdaptiveTextBlock()
+            //    {
+            //        Text = $"{stepContext.Values["name"]}님의 예약 내역이 존재하지 않습니다.\r\n헌혈 예약 메뉴로 이동하시겠어요?",
+            //    });
+            //}
 
-            card.Body.Add(new AdaptiveFactSet()
-            {
-                Spacing = AdaptiveSpacing.Medium,
-                Facts = new List<AdaptiveFact>()
-                {
-                    new AdaptiveFact()
-                    {
-                    Title = "이름",
-                    Value = $"{(string)stepContext.Values["name"]}"
-                    },
-                    new AdaptiveFact()
-                    {
-                    Title = "성별",
-                    Value = $"{(string)stepContext.Values["sex"]}"
-                    },
-                    new AdaptiveFact()
-                    {
-                    Title = "나이",
-                    Value = $"{Convert.ToInt32(stepContext.Values["age"])}"
-                    },
-                    new AdaptiveFact()
-                    {
-                    Title = "연락처",
-                    Value = $"{(string)stepContext.Values["phone"]}"
-                    },
-                    new AdaptiveFact()
-                    {
-                    Title = "헌혈의집",
-                    Value = $"{(string)stepContext.Values["center"]}"
-                    },
-                    new AdaptiveFact()
-                    {
-                    Title = "날짜",
-                    Value = $"{(string)stepContext.Values["date"]}"
-                    },
-                    new AdaptiveFact()
-                    {
-                    Title = "시간",
-                    Value = $"{(string)stepContext.Values["time"]}"
-                    }
-                }
-            });
-            */
+            // 수민 - 예약 정보 가져온 걸로 변수부분 다 바꿔주세요
+            //else 
+            //{
+            //    choices[1] = "예약취소";
+            //    choices[2] = "종료";
+
+            //    card.Body.Add(new AdaptiveTextBlock()
+            //    {
+            //        Text = $"{(string)stepContext.Values["name"]}님의 예약정보",
+            //        Size = AdaptiveTextSize.Medium,
+            //        Color = AdaptiveTextColor.Accent,
+            //        Weight = AdaptiveTextWeight.Bolder
+            //    });
+
+            //    card.Body.Add(new AdaptiveFactSet()
+            //    {
+            //        Spacing = AdaptiveSpacing.Medium,
+            //        Facts = new List<AdaptiveFact>()
+            //        {
+            //            new AdaptiveFact()
+            //            {
+            //            Title = "이름",
+            //            Value = $"{(string)stepContext.Values["name"]}"
+            //            },
+            //            new AdaptiveFact()
+            //            {
+            //            Title = "성별",
+            //            Value = $"{(string)stepContext.Values["sex"]}"
+            //            },
+            //            new AdaptiveFact()
+            //            {
+            //            Title = "나이",
+            //            Value = $"{Convert.ToInt32(stepContext.Values["age"])}"
+            //            },
+            //            new AdaptiveFact()
+            //            {
+            //            Title = "연락처",
+            //            Value = $"{(string)stepContext.Values["phone"]}"
+            //            },
+            //            new AdaptiveFact()
+            //            {
+            //            Title = "헌혈의집",
+            //            Value = $"{(string)stepContext.Values["center"]}"
+            //            },
+            //            new AdaptiveFact()
+            //            {
+            //            Title = "날짜",
+            //            Value = $"{(string)stepContext.Values["date"]}"
+            //            },
+            //            new AdaptiveFact()
+            //            {
+            //            Title = "시간",
+            //            Value = $"{(string)stepContext.Values["time"]}"
+            //            }
+            //        }
+            //    });
+            //}
 
             card.Body.Add(new AdaptiveTextBlock()
             {
                 Text = "　",
                 Size = AdaptiveTextSize.Medium
             });
+
+            card.Actions = choices.Select(choice => new AdaptiveSubmitAction
+            {
+                Title = choice,
+                Data = choice,
+            }).ToList<AdaptiveAction>();
 
             return await stepContext.PromptAsync(
                 nameof(ChoicePrompt),
@@ -159,15 +174,21 @@ namespace Pibot.Dialogs
 
         private async Task<DialogTurnResult> FinalStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            if (((FoundChoice)stepContext.Result).Value == "예약취소")
+            if (((FoundChoice)stepContext.Result).Value == "예약하기")
             {
-                // 수민 예약 취소하기
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text("헌혈 예약 메뉴로 이동합니다."), cancellationToken);
+                return await stepContext.BeginDialogAsync(nameof(BookingDialog), new BookingDetails(), cancellationToken);
+            }
+
+            else if (((FoundChoice)stepContext.Result).Value == "예약취소")
+            {
+                // 수민 - 예약 내역 삭제하기
 
                 await stepContext.Context.SendActivityAsync(MessageFactory.Text("예약이 성공적으로 취소되었습니다."), cancellationToken);
                 return await stepContext.EndDialogAsync(null, cancellationToken);
             }
 
-            else //처음으로
+            else // 처음으로
             {
                 return await stepContext.EndDialogAsync(null, cancellationToken);
             }

@@ -604,7 +604,7 @@ namespace Pibot.Dialogs
 
             else
             {
-                await stepContext.Context.SendActivityAsync(MessageFactory.Text($"죄송합니다. 다시 예약해주세요."), cancellationToken);
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text($"죄송합니다. 예약이 확정되지 않았어요. 다시 예약해주세요."), cancellationToken);
                 return await stepContext.EndDialogAsync(null, cancellationToken);
             }
         }
