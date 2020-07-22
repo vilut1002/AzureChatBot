@@ -140,3 +140,4 @@ C:\Users\vilut\Azure\0718\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\sta
 C:\Users\vilut\Azure\0718\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\staticwebassets\Pibot.StaticWebAssets.xml
 C:\Users\vilut\Azure\0718\AzureChatBot\Pibot\Pibot\obj\Release\netcoreapp3.1\Pibot.genruntimeconfig.cache
 C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\bin\Release\netcoreapp3.1\Cards\personalInfoCard.json
+C:\Users\DahaeLee\Documents\GitHub\AzureChatBot\Pibot\Pibot\bin\Release\netcoreapp3.1\Cards\center1Card.json

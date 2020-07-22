@@ -20,14 +20,12 @@ namespace Pibot.Dialogs
 {
     public class MainDialog : ComponentDialog
     {
-        private readonly IStatePropertyAccessor<UserProfile> _userProfileAccessor;
         protected readonly ILogger Logger;
 
         // Dependency injection uses this constructor to instantiate MainDialog
         public MainDialog(BookingDialog bookingDialog, QnaDialog qnaDialog, QuizDialog quizDialog, ILogger<MainDialog> logger, UserState userState)
             : base(nameof(MainDialog))
         {
-            _userProfileAccessor = userState.CreateProperty<UserProfile>("UserProfile");
             Logger = logger;
 
             AddDialog(new TextPrompt(nameof(TextPrompt)));
@@ -83,11 +81,7 @@ namespace Pibot.Dialogs
         {
             if (stepContext.Result is BookingDetails result)
             {
-                var userProfile = await _userProfileAccessor.GetAsync(stepContext.Context, () => new UserProfile(), cancellationToken);
-
-                var timeProperty = new TimexProperty(result.Date);
-                var travelDateMsg = timeProperty.ToNaturalLanguage(DateTime.Now);
-                var messageText = $"{userProfile.Name}님의 예약이 성공적으로 접수되었습니다. 감사합니다!";
+                var messageText = $"{result.Name}님의 예약이 성공적으로 접수되었습니다. 감사합니다!";
                 var message = MessageFactory.Text(messageText, messageText, InputHints.IgnoringInput);
                 await stepContext.Context.SendActivityAsync(message, cancellationToken);
             }

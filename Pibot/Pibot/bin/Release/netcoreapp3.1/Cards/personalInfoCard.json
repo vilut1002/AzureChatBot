@@ -53,7 +53,7 @@
     },
     {
       "type": "Input.Text",
-      "placeholder": "연락처를 입력해주세요.",
+      "placeholder": "'-' 제외하고 숫자만 입력해주세요.",
       "id": "phone",
       "style": "Tel",
       "maxLength": 11

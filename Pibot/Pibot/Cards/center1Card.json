@@ -1,0 +1,76 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "헌혈의 집을 선택해주세요. "
+    },
+    {
+      "type": "Input.ChoiceSet",
+      "choices": [
+        {
+          "title": "서울",
+          "value": "서울"
+        },
+        {
+          "title": "경기",
+          "value": "경기"
+        },
+        {
+          "title": "인천",
+          "value": "인천"
+        },
+        {
+          "title": "강원",
+          "value": "강원"
+        },
+        {
+          "title": "충북",
+          "value": "충북"
+        },
+        {
+          "title": "대전세종충남",
+          "value": "대전세종충남"
+        },
+        {
+          "title": "전북",
+          "value": "전북"
+        },
+        {
+          "title": "광주전남",
+          "value": "광주전남"
+        },
+        {
+          "title": "대구경북",
+          "value": "대구경북"
+        },
+        {
+          "title": "부산",
+          "value": "부산"
+        },
+        {
+          "title": "울산",
+          "value": "울산"
+        },
+        {
+          "title": "경남",
+          "value": "경남"
+        },
+        {
+          "title": "제주",
+          "value": "제주"
+        }
+      ],
+      "id": "location1",
+      "value": "서울"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "OK"
+    }
+  ]
+}

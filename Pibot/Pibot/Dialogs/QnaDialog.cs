@@ -19,14 +19,12 @@ namespace Pibot.Dialogs
     {
         private readonly ILogger<QnaDialog> _logger;
         private readonly IBotServices _botServices;
-        private readonly IStatePropertyAccessor<UserProfile> _userProfileAccessor;
 
         public QnaDialog(IBotServices botServices, ILogger<QnaDialog> logger, BookingDialog bookingDialog, UserState userState)
             : base(nameof(QnaDialog))
         {
             _logger = logger;
             _botServices = botServices;
-            _userProfileAccessor = userState.CreateProperty<UserProfile>("UserProfile");
 
             AddDialog(new TextPrompt(nameof(TextPrompt)));
             AddDialog(bookingDialog);
