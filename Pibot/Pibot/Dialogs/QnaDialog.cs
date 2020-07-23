@@ -217,7 +217,8 @@ namespace Pibot.Dialogs
             HeroCard card = new HeroCard(
                             title: name,
                             images: new CardImage[] { new CardImage() { Url = MakeMap(latitude, longitude) } },
-                            text: address
+                            text: address,
+		tap:  new CardAction() { Value = $"http://maps.google.com/maps?q={ latitude},{longitude}",Type = "openUrl", } 
                             );
 
             return card;

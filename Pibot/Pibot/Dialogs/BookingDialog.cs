@@ -398,6 +398,7 @@ namespace Pibot.Dialogs
             HeroCard card = new HeroCard(
                             title: name,
                             images: new CardImage[] { new CardImage() { Url = MakeMap(latitude, longitude) } },
+		tap: new CardAction() { Value = $"http://maps.google.com/maps?q={ latitude},{longitude}", Type = "openUrl", },
                             text: address,
                             buttons: new List<CardAction>
                             {new CardAction(ActionTypes.PostBack, title: "º±≈√", value: name)}
