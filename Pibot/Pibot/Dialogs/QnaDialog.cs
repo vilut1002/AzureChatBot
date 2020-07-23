@@ -153,6 +153,7 @@ namespace Pibot.Dialogs
                                 case "군포시":
                                 case "안산시":
                                 case "안양시":
+                                case "양시":
                                     await stepContext.Context.SendActivityAsync($"안양, 군포, 안산 헌혈의집 리스트입니다.");
                                     cards.Add(MakeMapCards("평촌센터", 37.389693, 126.95106, "경기도 안양시 동안구 동안로 130\r\n　").ToAttachment());
                                     cards.Add(MakeMapCards("안양센터", 37.400566, 126.921963, "경기도 안양시 만안구 만안로 223번길 13, 3층").ToAttachment());
