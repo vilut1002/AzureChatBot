@@ -84,7 +84,7 @@ namespace Pibot.Dialogs
                 {
                     connection.Open();
                     StringBuilder sb = new StringBuilder();
-                    bookingDetails = Submit_Query(connection, $"SELECT * from reservInfo WHERE Phone = '{stepContext.Values["phone"]}';");
+                    bookingDetails = Submit_Query(connection, $"SELECT * from reservInfo WHERE Phone = '{stepContext.Values["phone"]}'AND reserv_date>current_timestamp;");
                     //await stepContext.Context.SendActivityAsync(MessageFactory.Text("쿼리보냄"), cancellationToken);
                 }
             }
