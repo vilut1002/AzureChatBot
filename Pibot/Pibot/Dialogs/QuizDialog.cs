@@ -24,6 +24,7 @@ namespace Pibot.Dialogs
         private static int score = 0;
         public QuizDialog(UserState userState) : base(nameof(QuizDialog))
         {
+           
             var waterfallSteps = new WaterfallStep[]
             {
                 StartStepAsync,
@@ -75,6 +76,7 @@ namespace Pibot.Dialogs
 
         private async Task<DialogTurnResult> StartStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
+            score = 0;
             var choices = new[] { "시작하기" };
             var card = new AdaptiveCard(new AdaptiveSchemaVersion(1, 0))
             {
