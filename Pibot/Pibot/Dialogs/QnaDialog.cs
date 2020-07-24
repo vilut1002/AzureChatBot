@@ -153,6 +153,7 @@ namespace Pibot.Dialogs
                                 case "군포시":
                                 case "안산시":
                                 case "안양시":
+                                case "양시":
                                     await stepContext.Context.SendActivityAsync($"안양, 군포, 안산 헌혈의집 리스트입니다.");
                                     cards.Add(MakeMapCards("평촌센터", 37.389693, 126.95106, "경기도 안양시 동안구 동안로 130\r\n　").ToAttachment());
                                     cards.Add(MakeMapCards("안양센터", 37.400566, 126.921963, "경기도 안양시 만안구 만안로 223번길 13, 3층").ToAttachment());
@@ -179,6 +180,15 @@ namespace Pibot.Dialogs
                         }
                         else
                             await stepContext.Context.SendActivityAsync($"서울은 '서대문구 헌혈의집' 등 구단위로, 경기는 '성남시 헌혈의집' 등 시단위로 적어주시면 제가 더 알기 쉬워요!");
+                        break;
+                    case "저혈압":
+                        await stepContext.Context.SendActivityAsync($"저혈압의 경우 헌혈을 하기 힘들어요. 헌혈을 할 경우 헌혈자에 따라서 약간의 차이가 있긴 하지만 혈압이 10~20mmHg정도 낮아집니다. 대부분의 헌혈자는 헌혈 후 휴식을 취하는 동안 회복되는데 저혈압이나 고혈압 등과 같이 심혈관계(혈압)에 이상이 있는 분들의 경우에는 헌혈이 혈압의 저하 및 변동 또는 회복기간에 영향을 미칠 가능성이 더 높으며, 이 경우 헌혈후유증의 발생 가능성도 훨씬 높아집니다.");
+                        break;
+                    case "기념품":
+                        await stepContext.Context.SendActivityAsync($"헌혈 기념품은 헌혈에 대한 감사의 뜻으로 헌혈자분들께 지급해 드리고 있어요. 각 헌혈 장소에서는 헌혈자분이 매년 기념품 선정위원회를 통해 선정된 품목들 중에 기념품을 선택하시도록 준비하고 있습니다.");
+                        break;
+                    case "감사":
+                        await stepContext.Context.SendActivityAsync($"감사해요ღ'ᴗ'ღ 더 노력하는 피봇이 될게요.");
                         break;
                     case "인사":
                         await stepContext.Context.SendActivityAsync($"안녕하세요ღ'ᴗ'ღ 헌혈의 모든 것을 알려드리는 챗봇, 피봇입니다!");
