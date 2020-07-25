@@ -4,7 +4,10 @@
 
 
 ## 시연 링크
-https://vilut1002.github.io/AzureChatBot/index.html
+- [챗봇 실행주소](https://vilut1002.github.io/AzureChatBot/index.html)
+- [챗봇 시연영상](https://youtu.be/6Q9ZaLvIgfs)    
+- [시스템 아키텍트와 구현 설명영상](https://youtu.be/W8mF2LLnX9Y)   
+
 
 
 ## 개발 환경
@@ -15,25 +18,14 @@ https://vilut1002.github.io/AzureChatBot/index.html
 - [Azure Trial](https://azure.microsoft.com/ko-kr/free/)
 - .NET framework
 
-
-## 사용한 애져 리소스들
-
-
 ## Bot framework emulator를 사용한 프로젝트 실행 방법
 1. [개발환경](#개발-환경) 셋팅
 2. git clone 
     ```git clone https://github.com/vilut1002/AzureChatBot```
 3. Visual Studio에서 로컬로 봇을 실행 (디버그)
 4. Bot framework emulator에서 Open Bot 후 실행
-    Bot Url ex) 'http://localhost:3978/api/messages'
+    Bot Url ex) localhost:3978/api/messages
 
-
-## 유튜브 시연영상, 설명영상 링크
-[[KCC2020 MS Azure ChatBot 경진대회] PiBot - preSNACKS팀 시스템 아키텍트와 구현 설명영상](https://youtu.be/W8mF2LLnX9Y)   
-[[KCC2020 MS Azure ChatBot 경진대회] PiBot - preSNACKS팀 시연영상](https://youtu.be/6Q9ZaLvIgfs)    
-
-  
-# 중심내용과 코드 설명  
 
 ## 기본 프로그램 아키텍처 설명
 액티비티다이어그램, 전체소스 구조 그림으로 넣기
@@ -67,7 +59,7 @@ https://vilut1002.github.io/AzureChatBot/index.html
                         {
                             while (reader.Read())
                             {
-                                // 애트리뷰트별로 index 구분해서 bookingDetail 인스턴스에 저장
+                                // 애트리뷰트 순서로 index 구분해서 bookingDetail 인스턴스에 저장
                                 BookingDetails bookingQuery = new BookingDetails();
                                 bookingQuery.ID = reader.GetInt32(0);
                                 bookingQuery.Name = reader.GetString(1);
@@ -96,16 +88,20 @@ https://vilut1002.github.io/AzureChatBot/index.html
 - [Google map API (maps static API)](https://developers.google.com/maps/documentation/maps-static/overview?&hl=ko)
 
 ## QnA
+
 ### 다이얼로그 파일
  [QnaDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/QnaDialog.cs)
-### 코드 구조(이미지)
+
+## 코드 구조(이미지)
+
 ### LUIS (Azure 자연어처리 서비스)
-LUIS applications(https://www.luis.ai/applications)에서 Authoring resource 생성 후, intent와 entity를 의도에 맞게 추가함. 
+[LUIS applications](https://www.luis.ai/applications)에서 Authoring resource 생성 후, intent와 entity를 의도에 맞게 추가함. 
+
 ### 참고한 샘플 봇 
-Microsoft / BotFramework-Samples/nlp-with-dispatch
-https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch 
+[Microsoft / BotFramework-Samples/nlp-with-dispatch](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch)
+
 ### 참고 문서
-Microsoft docs, Azure/cognitive service/LUIS https://docs.microsoft.com/ko-kr/azure/cognitive-services/luis/what-is-luis
+[Microsoft docs, Azure/cognitive service/LUIS](https://docs.microsoft.com/ko-kr/azure/cognitive-services/luis/what-is-luis)
 
 
 
