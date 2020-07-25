@@ -9,13 +9,13 @@ https://vilut1002.github.io/AzureChatBot/index.html
 
 ## 개발 환경
 
-- VISUAL STUDIO https://www.visualstudio.com
+- [VISUAL STUDIO](https://www.visualstudio.com)
 
-- Bot Framework v4 SDK Templates for Visual Studio https://aka.ms/bf-bc-vstemplate
+- [Bot Framework v4 SDK Templates for Visual Studio](https://aka.ms/bf-bc-vstemplate)
 
-- Bot Framework emulator https://github.com/Microsoft/BotFramework-Emulator
+- [Bot Framework emulator](https://github.com/Microsoft/BotFramework-Emulator)
 
-- Azure Trial https://azure.microsoft.com/ko-kr/free/
+- [Azure Trial](https://azure.microsoft.com/ko-kr/free/)
 
 
 ## 사용한 애져 리소스들
@@ -25,14 +25,14 @@ https://vilut1002.github.io/AzureChatBot/index.html
 1. Project, Bot framework emulator 다운로드
 2. Visual Studio에서 로컬로 봇을 실행 (디버그)
 3. Bot framework emulator에서 Open Bot
-4. Bot Url : http://localhost:3978/api/messages
+4. Bot Url ex) http://localhost:3978/api/messages
 5. Microsoft App ID, password : appsettings.json 파일에서 확인
 6. 봇 실행 후 사용자가 먼저 말을 걸면 대화 시작
 
 
 ## 유튜브 시연영상, 설명영상 링크
-[KCC2020 MS Azure ChatBot 경진대회] PiBot - preSNACKS팀 시스템 아키텍트와 구현 설명영상 https://youtu.be/W8mF2LLnX9Y
-[KCC2020 MS Azure ChatBot 경진대회] PiBot - preSNACKS팀 시연영상 https://youtu.be/6Q9ZaLvIgfs 
+[[KCC2020 MS Azure ChatBot 경진대회] PiBot - preSNACKS팀 시스템 아키텍트와 구현 설명영상](https://youtu.be/W8mF2LLnX9Y)
+[[KCC2020 MS Azure ChatBot 경진대회] PiBot - preSNACKS팀 시연영상](https://youtu.be/6Q9ZaLvIgfs) 
 
     
          
@@ -50,9 +50,52 @@ https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/CheckA
 ### 사용한 샘플 봇
 Microsoft / BotFramework-Samples https://github.com/microsoft/BotFramework-Samples
 ### 참고 문서
-- Adaptive Cards Schema https://adaptivecards.io/explorer/ 
-- 데이터 베이스  https://docs.microsoft.com/ko-kr/azure/azure-sql/
-코드
+- 채팅 GUI: [Adaptive Cards Schema](https://adaptivecards.io/explorer/) 
+- 데이터 베이스  https://docs.microsoft.com/ko-kr/azure/azure-sql/     
+    <details><summary>코드 예시</summary><pre><code>try
+            {
+                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+
+                builder.DataSource = "yourServerName.database.windows.net";
+                builder.UserID = "yourID";
+                builder.Password = "yourPW";
+                builder.InitialCatalog = "yourDBname";
+
+                using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                {
+                    connection.Open();
+                    string sql_query = $"SELECT * from reservInfo WHERE Phone = '{stepContext.Values["phone"]}'AND reserv_date>current_timestamp;";
+                    using (var command = new SqlCommand(sql_query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                // 애트리뷰트별로 index 구분해서 bookingDetail 인스턴스에 저장
+                                BookingDetails bookingQuery = new BookingDetails();
+                                bookingQuery.ID = reader.GetInt32(0);
+                                bookingQuery.Name = reader.GetString(1);
+                                bookingQuery.Sex = reader.GetString(2);
+                                bookingQuery.Age = reader.GetInt32(3);
+                                bookingQuery.Phone = reader.GetString(4);
+                                DateTime myDate = reader.GetDateTime(5);
+                                string convertedDate = myDate.ToString("yyyy-MM-ddhh:mm");
+                                string dateStr = convertedDate.Substring(0, 10);
+                                string timeStr = convertedDate.Substring(10);
+                                bookingQuery.Date = dateStr;
+                                bookingQuery.Time = timeStr;
+                                bookingQuery.Center = reader.GetString(6);
+
+                                return bookingQuery;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.ToString());
+            }</code></pre></details>  
 - Google map API (maps static API) https://developers.google.com/maps/documentation/maps-static/overview?&hl=ko
 
 ## QnA
