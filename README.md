@@ -21,19 +21,17 @@ https://vilut1002.github.io/AzureChatBot/index.html
 
 ## Bot framework emulator를 사용한 프로젝트 실행 방법
 1. [개발환경](#개발-환경) 셋팅
-2. Visual Studio에서 로컬로 봇을 실행 (디버그)
-3. Bot framework emulator에서 Open Bot
-4. Bot Url ex) http://localhost:3978/api/messages
-5. Microsoft App ID, password : appsettings.json 파일에서 확인
-6. 봇 실행 후 사용자가 먼저 말을 걸면 대화 시작
+2. git clone 
+    ```git clone https://github.com/vilut1002/AzureChatBot```
+3. Visual Studio에서 로컬로 봇을 실행 (디버그)
+4. Bot framework emulator에서 Open Bot 후 실행
+    Bot Url ex) http://localhost:3978/api/messages
 
 
 ## 유튜브 시연영상, 설명영상 링크
 [[KCC2020 MS Azure ChatBot 경진대회] PiBot - preSNACKS팀 시스템 아키텍트와 구현 설명영상](https://youtu.be/W8mF2LLnX9Y)
 [[KCC2020 MS Azure ChatBot 경진대회] PiBot - preSNACKS팀 시연영상](https://youtu.be/6Q9ZaLvIgfs) 
 
-    
-         
   
 # 중심내용과 코드 설명  
 
