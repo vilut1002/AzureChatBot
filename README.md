@@ -1,42 +1,41 @@
 # AzureChatBot
-1. 프로젝트에 대한 소개
+## 프로젝트 소개
 
 
-2. 실행 링크
+## 시연 링크
 https://vilut1002.github.io/AzureChatBot/index.html
 
-3. 개발 환경
+## 개발 환경
 
-VISUAL STUDIO https://www.visualstudio.com
+- VISUAL STUDIO https://www.visualstudio.com
 
-Bot Framework v4 SDK Templates for Visual Studio
-https://aka.ms/bf-bc-vstemplate
+- Bot Framework v4 SDK Templates for Visual Studio https://aka.ms/bf-bc-vstemplate
 
-Bot Framework emulator
-https://github.com/Microsoft/BotFramework-Emulator
+- Bot Framework emulator https://github.com/Microsoft/BotFramework-Emulator
 
-Azure Trial https://azure.microsoft.com/ko-kr/free/
-사용한 애져 리소스들
+- Azure Trial https://azure.microsoft.com/ko-kr/free/
 
-Bot framework emulator를 사용한 프로젝트 실행 방법
-Project, Bot framework emulator 다운로드
-Visual Studio에서 로컬로 봇을 실행 (디버그)
-Bot framework emulator에서 Open Bot
-Bot Url : http://localhost:3978/api/messages
-Microsoft App ID, password : appsettings.json 파일에서 확인
-봇 실행 후 사용자가 먼저 말을 걸면 대화 시작
+## 사용한 애져 리소스들
+
+## Bot framework emulator를 사용한 프로젝트 실행 방법
+1. Project, Bot framework emulator 다운로드
+2. Visual Studio에서 로컬로 봇을 실행 (디버그)
+3. Bot framework emulator에서 Open Bot
+4. Bot Url : http://localhost:3978/api/messages
+5. Microsoft App ID, password : appsettings.json 파일에서 확인
+6. 봇 실행 후 사용자가 먼저 말을 걸면 대화 시작
 
 
-유튜브 시연영상, 설명영상 링크
+## 유튜브 시연영상, 설명영상 링크
 [KCC2020 MS Azure ChatBot 경진대회] PiBot - preSNACKS팀 시스템 아키텍트와 구현 설명영상 https://youtu.be/W8mF2LLnX9Y
 [KCC2020 MS Azure ChatBot 경진대회] PiBot - preSNACKS팀 시연영상 https://youtu.be/6Q9ZaLvIgfs 
 
-<중심내용과 코드 설명>
+# 중심내용과 코드 설명
 
-기본 프로그램 아키텍처 설명
+## 기본 프로그램 아키텍처 설명
 액티비티다이어그램, 전체소스 구조 그림으로 넣기
 
-1) 예약, 조회, 취소
+## 예약, 조회, 취소
 - 파일 깃허브 링크
 https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/BookingDialog.cs
 https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/CheckAndCancelDialog.cs
@@ -49,7 +48,7 @@ Adaptive Cards Schema https://adaptivecards.io/explorer/
 코드
 Google map API (maps static API) https://developers.google.com/maps/documentation/maps-static/overview?&hl=ko
 
-2) QnA
+## QnA
 - 파일 깃허브 링크
 https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/QnaDialog.cs
 - 코드 구조(이미지)
@@ -63,7 +62,7 @@ Microsoft docs, Azure/cognitive service/LUIS https://docs.microsoft.com/ko-kr/az
 
 
 
-3) 퀴즈
+## 퀴즈
 - 파일 깃허브 링크
 https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/QuizDialog.cs
 - 코드 구조
