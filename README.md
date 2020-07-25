@@ -150,5 +150,5 @@
 ## About preSNACKS
 이화여자대학교 컴퓨터공학 전공   
 이수민 vilut1002@gmail.com   
-김은아 eaz@ewhain.net   
+김은아 eaz03@ewhain.net   
 이다해 dah3132@gmail.com   
