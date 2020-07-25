@@ -25,12 +25,12 @@ https://vilut1002.github.io/AzureChatBot/index.html
     ```git clone https://github.com/vilut1002/AzureChatBot```
 3. Visual Studio에서 로컬로 봇을 실행 (디버그)
 4. Bot framework emulator에서 Open Bot 후 실행
-    Bot Url ex) http://localhost:3978/api/messages
+    Bot Url ex) 'http://localhost:3978/api/messages'
 
 
 ## 유튜브 시연영상, 설명영상 링크
-[[KCC2020 MS Azure ChatBot 경진대회] PiBot - preSNACKS팀 시스템 아키텍트와 구현 설명영상](https://youtu.be/W8mF2LLnX9Y)
-[[KCC2020 MS Azure ChatBot 경진대회] PiBot - preSNACKS팀 시연영상](https://youtu.be/6Q9ZaLvIgfs) 
+[[KCC2020 MS Azure ChatBot 경진대회] PiBot - preSNACKS팀 시스템 아키텍트와 구현 설명영상](https://youtu.be/W8mF2LLnX9Y)   
+[[KCC2020 MS Azure ChatBot 경진대회] PiBot - preSNACKS팀 시연영상](https://youtu.be/6Q9ZaLvIgfs)    
 
   
 # 중심내용과 코드 설명  
@@ -38,10 +38,10 @@ https://vilut1002.github.io/AzureChatBot/index.html
 ## 기본 프로그램 아키텍처 설명
 액티비티다이어그램, 전체소스 구조 그림으로 넣기
 
-## 예약, 조회, 취소
-### 파일 깃허브 링크
-[예약 하기 BookingDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/BookingDialog.cs)
-[예약 조회 및 취소 CheckAndCancelDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/CheckAndCancelDialog.cs)
+## 예약, 조회, 취소   
+### 다이얼로그 파일
+* [예약 하기 BookingDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/BookingDialog.cs)   
+* [예약 조회 및 취소 CheckAndCancelDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/CheckAndCancelDialog.cs)
 ### 코드 구조
 ### 사용한 샘플 봇
 [Microsoft / csharp dotnet CoreBot](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/13.core-bot)
@@ -96,7 +96,7 @@ https://vilut1002.github.io/AzureChatBot/index.html
 - [Google map API (maps static API)](https://developers.google.com/maps/documentation/maps-static/overview?&hl=ko)
 
 ## QnA
-### 파일 깃허브 링크
+### 다이얼로그 파일
  [QnaDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/QnaDialog.cs)
 ### 코드 구조(이미지)
 ### LUIS (Azure 자연어처리 서비스)
@@ -107,14 +107,6 @@ https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotne
 ### 참고 문서
 Microsoft docs, Azure/cognitive service/LUIS https://docs.microsoft.com/ko-kr/azure/cognitive-services/luis/what-is-luis
 
-
-
-## 퀴즈
-- 파일 깃허브 링크
-https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/QuizDialog.cs
-- 코드 구조
-- 사용한 샘플 봇 파일과 그 url(저희 봇샘플에서 가져온거)
-- 참고한 문서
 
 
 ### About preSNACKS
