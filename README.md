@@ -7,16 +7,12 @@
 https://vilut1002.github.io/AzureChatBot/index.html
 
 
-## 개발 환경
+## develop_environ
 
 - [VISUAL STUDIO](https://www.visualstudio.com)
-
 - [Bot Framework v4 SDK Templates for Visual Studio](https://aka.ms/bf-bc-vstemplate)
-
 - [Bot Framework emulator](https://github.com/Microsoft/BotFramework-Emulator)
-
 - [Azure Trial](https://azure.microsoft.com/ko-kr/free/)
-
 - .NET framework
 
 
@@ -24,7 +20,7 @@ https://vilut1002.github.io/AzureChatBot/index.html
 
 
 ## Bot framework emulator를 사용한 프로젝트 실행 방법
-1. Project, Bot framework emulator 다운로드
+1. [개발환경](#develop_environ) 셋팅
 2. Visual Studio에서 로컬로 봇을 실행 (디버그)
 3. Bot framework emulator에서 Open Bot
 4. Bot Url ex) http://localhost:3978/api/messages
