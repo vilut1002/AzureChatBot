@@ -24,22 +24,33 @@
 3. Visual Studio에서 로컬로 봇을 실행 (디버그)
 4. Bot framework emulator에서 Open Bot 후 실행
     Bot Url ex) localhost:3978/api/messages
-
+ 
 
 ## 기본 프로그램 아키텍처 설명
 ### 전체 소스코드 구조
 <p> <img src="http://drive.google.com/uc?export=view&id=1BbyL3hi-wq3SnMhOuwLSdPFCXP1meyhH" width="800"> </p>
-### 액티비티 다이어그램
-<p> <img src="http://drive.google.com/uc?export=view&id=1k2Uz0AtBLjfEIr4qvw83lPE4rp_pnUmd" width="800"> </p>
 
-## 예약, 조회, 취소   
-### 다이얼로그 파일
+### 액티비티 다이어그램
+<p> <img src="http://drive.google.com/uc?export=view&id=1k2Uz0AtBLjfEIr4qvw83lPE4rp_pnUmd" width="600"> </p>
+
+## 프로그램 기능
+
+### 예약, 조회, 취소   
+
+#### 다이얼로그 파일
 * [예약 하기 BookingDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/BookingDialog.cs)   
 * [예약 조회 및 취소 CheckAndCancelDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/CheckAndCancelDialog.cs)
 
-### 사용한 봇 
+#### 코드 구조
+- 예약
+<p> <img src="http://drive.google.com/uc?export=view&id=15wbK6Ds82Mx4KH9BxiTvEwjm9gWsi_rs" width="500"> </p>
+
+- 조회 및 취소
+<p> <img src="http://drive.google.com/uc?export=view&id=15n1PcsdvHis1oPQB8xv0Q15B0s2edDq6" width="500"> </p>
+
+#### 사용한 봇 
 [Microsoft / csharp dotnet CoreBot](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/13.core-bot)
-### 참고 문서
+#### 참고 문서
 - 채팅 GUI: [Adaptive Cards Schema](https://adaptivecards.io/explorer/) 
 - 데이터 베이스 : [MS Azure SQL](https://docs.microsoft.com/ko-kr/azure/azure-sql/)
     <details><summary>.NET 코드 예시</summary>   
@@ -90,19 +101,28 @@
             }
     </details>  
 - [Google map API (maps static API)](https://developers.google.com/maps/documentation/maps-static/overview?&hl=ko)
+    <details> <summary> maps static API 코드 예시 </summary>
+    http://maps.google.com/maps/api/staticmap?center={위도},{경도}&zoom=16&size=512x512&maptype=roadmap&markers=color:red%7C{위도},{경도}&sensor=false&key=<발급받은 API key>
+    </details>
 
-## QnA
+### QnA
 
-### 다이얼로그 파일
+#### 다이얼로그 파일
  [QnaDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/QnaDialog.cs)
 
-### LUIS (Azure 자연어처리 서비스)
-[LUIS applications](https://www.luis.ai/applications)에서 Authoring resource 생성 후, intent와 entity를 의도에 맞게 추가함. 
+### 코드 구조
+<p> <img src="http://drive.google.com/uc?export=view&id=1lN76IEXiMNIRCbgRud0xyj-muEWV4qhz" width="500"> </p>
 
-### 사용한 봇 프레임워크 
+#### LUIS (Azure 자연어처리 서비스)
+[LUIS applications](https://www.luis.ai/applications)에서 Authoring resource 생성 후, intent와 entity를 의도에 맞게 추가함. 
+    <details><summary>LUIS 사용방법</summary>   
+     
+   </details>  
+
+#### 사용한 봇 프레임워크 
 [Microsoft / BotFramework-Samples/nlp-with-dispatch](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch)
 
-### 참고 문서
+#### 참고 문서
 [Microsoft docs, Azure/cognitive service/LUIS](https://docs.microsoft.com/ko-kr/azure/cognitive-services/luis/what-is-luis)
 
 
