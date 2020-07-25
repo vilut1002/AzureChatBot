@@ -102,9 +102,11 @@
     </details>  
 - [Google map API (maps static API)](https://developers.google.com/maps/documentation/maps-static/overview?&hl=ko)
     <details> <summary> maps static API 코드 예시 </summary>
-    http://maps.google.com/maps/api/staticmap?center={위도},{경도}&zoom=16&size=512x512&maptype=roadmap&markers=color:red%7C{위도},{경도}&sensor=false&key=<발급받은 API key>
+    
+        http://maps.google.com/maps/api/staticmap?center={위도},{경도}&zoom=16&size=512x512&maptype=roadmap&markers=color:red%7C{위도},{경도}&sensor=false&key=<발급받은 API key>
     </details>
-
+    
+* * *
 ### QnA
 
 #### 다이얼로그 파일
@@ -115,8 +117,23 @@
 
 #### LUIS (Azure 자연어처리 서비스)
 [LUIS applications](https://www.luis.ai/applications)에서 Authoring resource 생성 후, intent와 entity를 의도에 맞게 추가함. 
-    <details><summary>LUIS 사용방법</summary>   
-     
+    <details><summary>LUIS 사용방법</summary>  
+        [BotServices.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/BotServices.cs)와 [IBotServices.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/IBotServices.cs)를 추가한다.
+    
+           private readonly IBotServices _botServices;
+           var recognizerResult = await _botServices.Dispatch.RecognizeAsync(stepContext.Context, cancellationToken);
+           var topIntent = recognizerResult.GetTopScoringIntent();
+           
+           //intent에 따라 다른 기능을 실행
+           if (topIntent.intent == "예약")
+            {
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text("헌혈 예약 메뉴로 이동합니다."), cancellationToken);
+                return await stepContext.BeginDialogAsync(nameof(BookingDialog), new BookingDetails(), cancellationToken);
+            }
+
+            else if (topIntent.intent == "종료")
+                return await stepContext.EndDialogAsync(null, cancellationToken);
+        
    </details>  
 
 #### 사용한 봇 프레임워크 
@@ -127,7 +144,7 @@
 
 
 
-
+* * *
 ## About preSNACKS
 이화여자대학교 컴퓨터공학 전공   
 이수민 vilut1002@gmail.com   
