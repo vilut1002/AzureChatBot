@@ -35,8 +35,8 @@ https://vilut1002.github.io/AzureChatBot/index.html
 [KCC2020 MS Azure ChatBot 경진대회] PiBot - preSNACKS팀 시연영상 https://youtu.be/6Q9ZaLvIgfs 
 
 
-
-# 중심내용과 코드 설명
+  
+# 중심내용과 코드 설명  
 
 ## 기본 프로그램 아키텍처 설명
 액티비티다이어그램, 전체소스 구조 그림으로 넣기
@@ -76,5 +76,5 @@ https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/QuizDi
 - 참고한 문서
 
 
-+개발자소개
+# About preSNACKS
 
