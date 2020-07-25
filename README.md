@@ -35,7 +35,7 @@
 * [예약 하기 BookingDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/BookingDialog.cs)   
 * [예약 조회 및 취소 CheckAndCancelDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/CheckAndCancelDialog.cs)
 ### 코드 구조
-### 사용한 샘플 봇
+### 사용한 봇 
 [Microsoft / csharp dotnet CoreBot](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/13.core-bot)
 ### 참고 문서
 - 채팅 GUI: [Adaptive Cards Schema](https://adaptivecards.io/explorer/) 
@@ -97,7 +97,7 @@
 ### LUIS (Azure 자연어처리 서비스)
 [LUIS applications](https://www.luis.ai/applications)에서 Authoring resource 생성 후, intent와 entity를 의도에 맞게 추가함. 
 
-### 참고한 샘플 봇 
+### 사용한 봇 프레임워크 
 [Microsoft / BotFramework-Samples/nlp-with-dispatch](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch)
 
 ### 참고 문서
@@ -105,5 +105,6 @@
 
 
 
-### About preSNACKS
+
+## About preSNACKS
 
