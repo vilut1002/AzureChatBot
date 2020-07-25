@@ -17,6 +17,8 @@ https://vilut1002.github.io/AzureChatBot/index.html
 
 - [Azure Trial](https://azure.microsoft.com/ko-kr/free/)
 
+- .NET framework
+
 
 ## 사용한 애져 리소스들
 
@@ -44,15 +46,15 @@ https://vilut1002.github.io/AzureChatBot/index.html
 
 ## 예약, 조회, 취소
 ### 파일 깃허브 링크
-https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/BookingDialog.cs
-https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/CheckAndCancelDialog.cs
+[예약 하기 BookingDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/BookingDialog.cs)
+[예약 조회 및 취소 CheckAndCancelDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/CheckAndCancelDialog.cs)
 ### 코드 구조
 ### 사용한 샘플 봇
-Microsoft / BotFramework-Samples https://github.com/microsoft/BotFramework-Samples
+[Microsoft / csharp dotnet CoreBot](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/13.core-bot)
 ### 참고 문서
 - 채팅 GUI: [Adaptive Cards Schema](https://adaptivecards.io/explorer/) 
-- 데이터 베이스  https://docs.microsoft.com/ko-kr/azure/azure-sql/     
-    <details><summary>코드 예시</summary><pre><code>try
+- 데이터 베이스 : [MS Azure SQL](https://docs.microsoft.com/ko-kr/azure/azure-sql/)
+    <details><summary>.NET 코드 예시</summary><code>try
             {
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
@@ -95,12 +97,13 @@ Microsoft / BotFramework-Samples https://github.com/microsoft/BotFramework-Sampl
             catch (SqlException e)
             {
                 Console.WriteLine(e.ToString());
-            }</code></pre></details>  
-- Google map API (maps static API) https://developers.google.com/maps/documentation/maps-static/overview?&hl=ko
+            }
+    </code></details>  
+- [Google map API (maps static API)](https://developers.google.com/maps/documentation/maps-static/overview?&hl=ko)
 
 ## QnA
 ### 파일 깃허브 링크
-https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/QnaDialog.cs
+ [QnaDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/QnaDialog.cs)
 ### 코드 구조(이미지)
 ### LUIS (Azure 자연어처리 서비스)
 LUIS applications(https://www.luis.ai/applications)에서 Authoring resource 생성 후, intent와 entity를 의도에 맞게 추가함. 
