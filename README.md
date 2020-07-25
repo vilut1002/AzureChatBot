@@ -1,7 +1,7 @@
 # PiBot
-<img src="http://drive.google.com/uc?export=view&id=1wU1TiDkOX54c_aeYEnOjNAzb0MB6JdoI" width="600" height="200">
+<img src="http://drive.google.com/uc?export=view&id=1wU1TiDkOX54c_aeYEnOjNAzb0MB6JdoI" width="600" height="230">
 ## 프로젝트 소개
-![KCC2020MS](https://postfiles.pstatic.net/MjAyMDA2MThfMjM1/MDAxNTkyNDQ5OTE2MDI5.GqCt7QWrZfQ0lg_Kizxcjv6aQdFr789-GRe_mnPqK9sg.2MGLAy1-eUh7zWEkZlm2i63FgvlN_TiC8T0Sqo-MD3Ug.PNG.formktmkt/%EC%A0%80%EC%9E%91%EA%B6%8C_%EC%B5%9C%EC%A2%85.png?type=w966){: width="60%" height="60%"}
+<img src="https://postfiles.pstatic.net/MjAyMDA2MThfMjM1/MDAxNTkyNDQ5OTE2MDI5.GqCt7QWrZfQ0lg_Kizxcjv6aQdFr789-GRe_mnPqK9sg.2MGLAy1-eUh7zWEkZlm2i63FgvlN_TiC8T0Sqo-MD3Ug.PNG.formktmkt/%EC%A0%80%EC%9E%91%EA%B6%8C_%EC%B5%9C%EC%A2%85.png?type=w966" width="600" height="500">
 
 ## 시연 링크
 - [챗봇 실행주소](https://vilut1002.github.io/AzureChatBot/index.html)
