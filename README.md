@@ -27,9 +27,11 @@
 
 
 ## 기본 프로그램 아키텍처 설명
-액티비티다이어그램, 전체소스 구조 그림으로 넣기
+###전체 소스코드 구조
+<p> <img src="http://drive.google.com/uc?export=view&id=1BbyL3hi-wq3SnMhOuwLSdPFCXP1meyhH"> </p>
+###액티비티 다이어그램
+<p> <img src="http://drive.google.com/uc?export=view&id=1k2Uz0AtBLjfEIr4qvw83lPE4rp_pnUmd"> </p>
 
-<p>
 ## 예약, 조회, 취소   
 ### 다이얼로그 파일
 * [예약 하기 BookingDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/BookingDialog.cs)   
@@ -88,7 +90,7 @@
             }
     </details>  
 - [Google map API (maps static API)](https://developers.google.com/maps/documentation/maps-static/overview?&hl=ko)
-</p>
+
 ## QnA
 
 ### 다이얼로그 파일
