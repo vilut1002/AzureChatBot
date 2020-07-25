@@ -39,7 +39,9 @@
 ### 참고 문서
 - 채팅 GUI: [Adaptive Cards Schema](https://adaptivecards.io/explorer/) 
 - 데이터 베이스 : [MS Azure SQL](https://docs.microsoft.com/ko-kr/azure/azure-sql/)
-    <details><summary>.NET 코드 예시</summary><code>try
+    <details><summary>.NET 코드 예시</summary>   
+            
+            try
             {
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
@@ -83,7 +85,7 @@
             {
                 Console.WriteLine(e.ToString());
             }
-    </code></details>  
+    </details>  
 - [Google map API (maps static API)](https://developers.google.com/maps/documentation/maps-static/overview?&hl=ko)
 
 ## QnA
