@@ -25,7 +25,7 @@
 4. Bot framework emulator에서 Open Bot 후 실행
     Bot Url ex) localhost:3978/api/messages
  
-
+* * *
 ## 기본 프로그램 아키텍처 설명
 ### 전체 소스코드 구조
 <p> <img src="http://drive.google.com/uc?export=view&id=1BbyL3hi-wq3SnMhOuwLSdPFCXP1meyhH" width="800"> </p>
