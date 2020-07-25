@@ -29,6 +29,7 @@
 ## 기본 프로그램 아키텍처 설명
 액티비티다이어그램, 전체소스 구조 그림으로 넣기
 
+<p>
 ## 예약, 조회, 취소   
 ### 다이얼로그 파일
 * [예약 하기 BookingDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/BookingDialog.cs)   
@@ -87,7 +88,7 @@
             }
     </details>  
 - [Google map API (maps static API)](https://developers.google.com/maps/documentation/maps-static/overview?&hl=ko)
-
+</p>
 ## QnA
 
 ### 다이얼로그 파일
