@@ -1,7 +1,7 @@
 # PiBot
 <p><img src="http://drive.google.com/uc?export=view&id=1wU1TiDkOX54c_aeYEnOjNAzb0MB6JdoI" width="500"></p>
 
-[PiBot 실행하기 - https://vilut1002.github.io/AzureChatBot/index.html](https://vilut1002.github.io/AzureChatBot/index.html)
+PiBot 실행하기[https://vilut1002.github.io/AzureChatBot/index.html](https://vilut1002.github.io/AzureChatBot/index.html)
 
 피봇은 MS Azure를 사용해 만든 챗봇으로, 대한적십자사의 헌혈 예약, 조회, 취소 등의 서비스와 함께 헌혈에 대한 다양한 정보를 제공합니다.
 
@@ -114,7 +114,7 @@
 #### 다이얼로그 파일
  [QnaDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/QnaDialog.cs)
 
-### 코드 구조
+#### 코드 구조
 <p> <img src="http://drive.google.com/uc?export=view&id=1lN76IEXiMNIRCbgRud0xyj-muEWV4qhz" width="500"> </p>
 
 #### LUIS (Azure 자연어처리 서비스)
