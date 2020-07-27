@@ -55,7 +55,8 @@ PiBot 실행하기[https://vilut1002.github.io/AzureChatBot/index.html](https://
 #### 참고 문서
 - 채팅 GUI: [Adaptive Cards Schema](https://adaptivecards.io/explorer/) 
 - 데이터 베이스 : [MS Azure SQL](https://docs.microsoft.com/ko-kr/azure/azure-sql/)
-    <details><summary>.NET 코드 예시</summary>   
+    * [데이터베이스 구축방법](https://kimbuzzi.tistory.com/2)
+    * <details><summary>.NET 코드 예시</summary>   
             
             try
             {
