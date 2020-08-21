@@ -1,5 +1,9 @@
+# KCC2020 Chatbot 경진대회
+한국정보과학회 x Microsoft x 디모아 공동개최의 Chatbot 경진대회 최고기술상 및 특별상 수상
+<p><img src="https://user-images.githubusercontent.com/53745427/90875133-a8597780-e3db-11ea-9e93-51e1fb784497.png" width="500"></p>
+
 # PiBot
-<p><img src="http://drive.google.com/uc?export=view&id=1wU1TiDkOX54c_aeYEnOjNAzb0MB6JdoI" width="500"></p>
+<p><img src="https://user-images.githubusercontent.com/53745427/90875386-0be3a500-e3dc-11ea-859c-cb6c40afb530.png" width="500"></p>
 
 PiBot 실행하기[https://vilut1002.github.io/AzureChatBot/index.html](https://vilut1002.github.io/AzureChatBot/index.html)
 
@@ -30,10 +34,10 @@ PiBot 실행하기[https://vilut1002.github.io/AzureChatBot/index.html](https://
 * * *
 ## 기본 프로그램 아키텍처 설명
 ### 전체 소스코드 구조
-<p> <img src="http://drive.google.com/uc?export=view&id=1BbyL3hi-wq3SnMhOuwLSdPFCXP1meyhH" width="800"> </p>
+<p> <img src="https://user-images.githubusercontent.com/53745427/90875378-0ab27800-e3dc-11ea-87cd-c5e80caba878.png" width="800"> </p>
 
 ### 액티비티 다이어그램
-<p> <img src="http://drive.google.com/uc?export=view&id=1k2Uz0AtBLjfEIr4qvw83lPE4rp_pnUmd" width="600"> </p>
+<p> <img src="https://user-images.githubusercontent.com/53745427/90875377-09814b00-e3dc-11ea-980e-92484bea647e.jpg" width="600"> </p>
 
 ## 프로그램 기능
 
@@ -45,10 +49,10 @@ PiBot 실행하기[https://vilut1002.github.io/AzureChatBot/index.html](https://
 
 #### 코드 구조
 - 예약
-<p> <img src="http://drive.google.com/uc?export=view&id=15wbK6Ds82Mx4KH9BxiTvEwjm9gWsi_rs" width="500"> </p>
+<p> <img src="https://user-images.githubusercontent.com/53745427/90875385-0be3a500-e3dc-11ea-9433-43f1da91a125.png" width="500"> </p>
 
 - 조회 및 취소
-<p> <img src="http://drive.google.com/uc?export=view&id=15n1PcsdvHis1oPQB8xv0Q15B0s2edDq6" width="500"> </p>
+<p> <img src="https://user-images.githubusercontent.com/53745427/90875381-0b4b0e80-e3dc-11ea-8a8f-9f4ae33c1380.png" width="500"> </p>
 
 #### 사용한 봇 
 [Microsoft / csharp dotnet CoreBot](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/13.core-bot)
@@ -116,7 +120,7 @@ PiBot 실행하기[https://vilut1002.github.io/AzureChatBot/index.html](https://
  [QnaDialog.cs](https://github.com/vilut1002/AzureChatBot/blob/master/Pibot/Pibot/Dialogs/QnaDialog.cs)
 
 #### 코드 구조
-<p> <img src="http://drive.google.com/uc?export=view&id=1lN76IEXiMNIRCbgRud0xyj-muEWV4qhz" width="500"> </p>
+<p> <img src="https://user-images.githubusercontent.com/53745427/90875379-0ab27800-e3dc-11ea-860d-3a7fd0e0792e.png" width="500"> </p>
 
 #### LUIS (Azure 자연어처리 서비스)
 [LUIS applications](https://www.luis.ai/applications)에서 Authoring resource 생성 후, intent와 entity를 의도에 맞게 추가함. 
